@@ -1,0 +1,36 @@
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.AssemblyInfoInputs.cache
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.AssemblyInfo.cs
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.csproj.CoreCompileInputs.cache
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\MJV - CalculadoraDaMorte.exe
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\MJV - CalculadoraDaMorte.deps.json
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\MJV - CalculadoraDaMorte.runtimeconfig.json
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\MJV - CalculadoraDaMorte.dll
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\MJV - CalculadoraDaMorte.pdb
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\Pessoa.dll
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\Pessoa.pdb
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.csproj.AssemblyReference.cache
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.csproj.CopyComplete
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.dll
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\refint\MJV - CalculadoraDaMorte.dll
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.pdb
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.genruntimeconfig.cache
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\ref\MJV - CalculadoraDaMorte.dll
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\MJV - CalculadoraDaMorte.exe
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\MJV - CalculadoraDaMorte.deps.json
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\MJV - CalculadoraDaMorte.runtimeconfig.json
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\MJV - CalculadoraDaMorte.dll
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\MJV - CalculadoraDaMorte.pdb
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\Pessoa.dll
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\bin\Debug\net7.0\Pessoa.pdb
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.csproj.AssemblyReference.cache
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.GeneratedMSBuildEditorConfig.editorconfig
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.AssemblyInfoInputs.cache
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.AssemblyInfo.cs
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.csproj.CoreCompileInputs.cache
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.csproj.CopyComplete
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.dll
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\refint\MJV - CalculadoraDaMorte.dll
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.pdb
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - CalculadoraDaMorte.genruntimeconfig.cache
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\ref\MJV - CalculadoraDaMorte.dll
