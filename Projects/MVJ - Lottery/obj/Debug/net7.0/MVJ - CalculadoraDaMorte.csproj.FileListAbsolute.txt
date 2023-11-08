@@ -1,0 +1,4 @@
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MVJ - CalculadoraDaMorte.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MVJ - CalculadoraDaMorte.AssemblyInfoInputs.cache
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MVJ - CalculadoraDaMorte.AssemblyInfo.cs
+C:\Users\laura\OneDrive\Área de Trabalho\Coisas do lucius\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MVJ - CalculadoraDaMorte.csproj.CoreCompileInputs.cache

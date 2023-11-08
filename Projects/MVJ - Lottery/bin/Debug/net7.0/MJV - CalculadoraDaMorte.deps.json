@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "MJV - CalculadoraDaMorte/1.0.0": {
+        "dependencies": {
+          "Pessoa": "1.0.0"
+        },
+        "runtime": {
+          "MJV - CalculadoraDaMorte.dll": {}
+        }
+      },
+      "Pessoa/1.0.0": {
+        "runtime": {
+          "Pessoa.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MJV - CalculadoraDaMorte/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Pessoa/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

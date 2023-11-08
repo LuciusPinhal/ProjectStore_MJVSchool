@@ -1,0 +1,5 @@
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - Lottery.csproj.AssemblyReference.cache
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - Lottery.GeneratedMSBuildEditorConfig.editorconfig
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - Lottery.AssemblyInfoInputs.cache
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - Lottery.AssemblyInfo.cs
+C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - Lottery.csproj.CoreCompileInputs.cache
