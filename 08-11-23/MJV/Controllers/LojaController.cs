@@ -14,28 +14,43 @@ namespace MJV.Controllers
             loja.Cidade = "Sonjaquim";
 
             return View(loja);
-          
+
         }
         public IActionResult Produtos()
         {
             List<Loja> lojas = new List<Loja>();
-       
+
             Loja loja;
-            for (int i = 1; i <= 5; i++)
+
+            loja = new Loja();
+            loja.Nome = "SonjaEletronics";
+            loja.Cidade = "Sonjaquim";
+            loja.sections = new List<Section>();
+            loja.sections.Add(new Section()
             {
-                loja = new Loja();
-                loja.Nome = "Seção "+ i ;
+                Nome = "Limpeza",
+                Produtos = new List<Produto>()
+                {
+                    new Produto() { Nome = "Macarrao", Descricao = "Macarrao de preparo rapido", valor = 20.0 },
+                    new Produto() { Nome = "Macarrao", Descricao = "Macarrao de preparo rapido", valor = 20.0 },
+                }
+            });
 
-      
-                loja.Produtos = new List<Produto>();
-                loja.Produtos.Add(new Produto() { Nome = "Macarrao", Descricao = "Macarrao de preparo rapido", valor = 20.0 });
-                loja.Produtos.Add(new Produto() { Nome = "Macarrao", Descricao = "Macarrao de preparo rapido", valor = 20.0 });
-                loja.Produtos.Add(new Produto() { Nome = "Macarrao", Descricao = "Macarrao de preparo rapido", valor = 20.0 });
+            loja.sections.Add(new Section()
+            {
+                Nome = "Cozinha",
+                Produtos = new List<Produto>()
+                {
+                    new Produto() { Nome = "Macarrao", Descricao = "Macarrao de preparo rapido", valor = 20.0 },
+                    new Produto() { Nome = "Macarrao", Descricao = "Macarrao de preparo rapido", valor = 20.0 },
+                }
+            });
 
-                lojas.Add(loja);
-            }
-
+            lojas.Add(loja);
+            
             return View(lojas);
         }
+
+
     }
 }
