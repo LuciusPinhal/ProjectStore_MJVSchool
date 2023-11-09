@@ -1,0 +1,53 @@
+﻿@model List<Loja>
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<style type="text/css">
+    main{
+       width: 100%;
+    }
+  .container {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .titulo-produtos {
+    color: #333;
+    font-size: 24px;
+  }
+
+  .botao-lojas {
+    text-decoration: none;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .botao-lojas:hover {
+    color: #fff;
+    background-color: #0056b3;
+  }
+
+</style>
+
+<div class="container">
+  <h1 class="titulo-produtos">Descubra Nossos Incríveis Produtos</h1>
+  <a class="botao-lojas" asp-controller="Loja" asp-action="Index">Explorar as Lojas</a>
+</div>
+
+
+@foreach (var loja in Model)
+{
+  
+   <h1>@loja.Nome</h1>
+   <partial name="_Produtos" model="@loja.Produtos"/>
+}

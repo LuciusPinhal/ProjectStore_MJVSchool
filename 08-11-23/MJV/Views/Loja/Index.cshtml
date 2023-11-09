@@ -1,0 +1,75 @@
+﻿@model Loja
+@{
+    ViewData["Title"] = "Loja Eletronicos";
+}
+
+<style type="text/css">
+
+    .Containers {
+            margin: 10px;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 5px #ccc;
+    }
+
+    .Containers .loja {
+        display: flex;
+        justify-content: space-around;
+        height: 50px;
+        border-radius: 5px;
+        align-items: center;
+    }
+
+    .Containers .loja {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .borders{
+        background-color: #ebe8e8;
+    }
+    .Containers .loja a {
+        position: absolute;
+        margin-left: 10%;
+  
+         text-decoration: none;
+        background-color: #007bff;
+        color: #fff !important;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .Cidades{
+        display: flex;
+        align-items: center;
+    }
+    .Containers .loja a:hover {
+           background-color: #0056b3;
+    }
+
+</style>
+
+<h1 style="
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+">
+    @ViewData["Title"]</h1>
+
+<div class="Containers">
+    <div class="loja borders">
+        <p>Nome:</p>
+        <p>Cidade:</p>
+    </div>
+    <div class="loja ">
+        <p class="nome">@Model.Nome</p>
+        <div class="Cidades">
+            <p>@Model.Cidade</p>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Loja" asp-action="Produtos">Ver Produtos</a>
+        </div>
+    </div>
+
+</div>

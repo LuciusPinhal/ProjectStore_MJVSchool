@@ -1,0 +1,13 @@
+﻿@model List<Habilidade>
+
+<table>
+    <tr>
+        <td>Nome da Habilidade</td>
+    </tr>
+    @foreach (var habilidade in Model)
+    {
+        <tr>
+            <td>@habilidade.Nome</td>
+        </tr>
+    }
+</table>

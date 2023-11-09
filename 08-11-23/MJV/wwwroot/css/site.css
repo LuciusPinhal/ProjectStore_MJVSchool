@@ -1,0 +1,54 @@
+html {<style type="text/css">
+  .loja {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px #ccc;
+  }
+
+  .loja h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .loja a {
+    color: #000;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .loja a:hover {
+    background-color: #bbb;
+  }
+</style>
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+

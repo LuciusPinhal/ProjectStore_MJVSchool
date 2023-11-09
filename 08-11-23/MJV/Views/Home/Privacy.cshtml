@@ -1,0 +1,24 @@
+﻿@model List<Usuario>
+
+@{
+    ViewData["Title"] = "MJV - Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+
+<partial name="_Mensgem" />
+
+
+<p>Use this page to detail your site's privacy policy.</p>
+
+@{
+    var hora = DateTime.Now;
+}
+<p> La hora es: @hora.ToShortDateString()</p>
+
+@foreach(var usuario in Model)
+{
+    <h1>@usuario.Nome</h1>
+    <h1>@usuario.SobreNome</h1>
+    <h1>@usuario.Email</h1>
+    <partial name="_Habilidade" model="@usuario.Habilidades"/>
+}
