@@ -42,12 +42,12 @@
 <div class="container">
   <h1 class="titulo-produtos">Descubra Nossos Incríveis Produtos</h1>
   <a class="botao-lojas" asp-controller="Loja" asp-action="Index">Explorar as Lojas</a>
+  <a class="botao-lojas" href="@Url.Action("DownloadProdutos", new { id = Model.First().Id })">Download Produtos</a>
 </div>
 
 
 @foreach (var loja in Model)
 {
-  
    <h1>@loja.Nome</h1>
    <partial name="_Produtos" model="@loja.sections"/>
 }

@@ -1,75 +1,173 @@
-﻿@model Loja
+﻿@model List<Loja>
 @{
-    ViewData["Title"] = "Loja Eletronicos";
+    ViewData["Title"] = "Loja Eletrônicos";
 }
 
 <style type="text/css">
 
     .Containers {
-            margin: 10px;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 5px #ccc;
+        margin: 10px;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 5px #ccc;
+        position: relative;
     }
 
-    .Containers .loja {
+    .loja {
         display: flex;
         justify-content: space-around;
-        height: 50px;
-        border-radius: 5px;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        flex-wrap: wrap;
+        align-content: center;
         align-items: center;
     }
 
-    .Containers .loja {
-        font-size: 20px;
-        font-weight: bold;
-    }
-    .borders{
-        background-color: #ebe8e8;
-    }
-    .Containers .loja a {
+   .loja p {
+        display: flex;
+        margin: 0;
+        width: 300px;
+        justify-content: center;
+   }
+
+    .loja a {
         position: absolute;
-        margin-left: 10%;
-  
-         text-decoration: none;
-        background-color: #007bff;
-        color: #fff !important;
+        text-align: center;
+        right: 50px; 
+        width:150px;
+    }
+
+    .btnClass {
+        text-decoration: none;
+        background-color: #0d6efd;
+        color: #fff;
         padding: 10px 20px;
         font-size: 16px;
         border: none;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
     }
-    .Cidades{
+
+    .btnClass:hover {
+        background-color: #e0e0e0;
+    }
+
+    .borders {
+        background-color: #ebe8e8;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    #openCreateLojaModal {
+        font-weight: bold;
+        justify-content: center;
+        width: 40%;
         display: flex;
-        align-items: center;
-    }
-    .Containers .loja a:hover {
-           background-color: #0056b3;
+        margin: 0 auto;
     }
 
 </style>
 
-<h1 style="
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: center;
-">
-    @ViewData["Title"]</h1>
+<h1 style="margin-bottom: 2rem; text-align: center;">@ViewData["Title"]</h1>
 
 <div class="Containers">
     <div class="loja borders">
         <p>Nome:</p>
         <p>Cidade:</p>
+
     </div>
-    <div class="loja ">
-        <p class="nome">@Model.Nome</p>
-        <div class="Cidades">
-            <p>@Model.Cidade</p>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Loja" asp-action="Produtos">Ver Produtos</a>
+    @foreach (var loja in Model)
+    {
+        <div class="loja">
+            <p>@loja.Nome</p>
+            <p>@loja.Cidade</p>
+ 
+            @if (@loja.sections != null)
+            {
+                <a class="nav-link btnClass" asp-controller="Loja" asp-action="Produtos" asp-route-id="@loja.Id">Ver Produtos</a>
+            }
+            else
+            {
+                <a class="nav-link btnClass openCreateProdutos" data-id="@loja.Id">Criar Produtos</a>
+            }
+        </div>
+    }
+</div>
+
+<a class="nav-link btnClass" id="openCreateLojaModal">Criar Nova Loja</a>
+
+
+<!-- Conteúdo do modal -->
+<div class="modal fade" id="CreateProdutos" tabindex="-1" role="dialog" aria-labelledby="CreateProdutosLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CreateProdutosLabel">Criar Novo Produto para Loja ID: <span id="lojaId"></span></h5>
+            </div>
+
+            <div class="modal-body">
+                <form id="createProdutosForm" asp-action="CreateProdutos" asp-controller="Loja" method="post">
+                    <input type="hidden" id="InputLojaId" name="LojaId" />
+
+                    <label for="section">Seção:</label>
+                    <input type="text" name="section" id="section" required>
+
+                    <label for="nomeProduto">Nome Produto:</label>
+                    <input type="text" name="nomeProduto" id="nomeProduto" required>
+
+                     <label for="nomeDescricao">Descrição do Produto:</label>
+                     <input type="text" name="nomeDescricao" id="nomeDescricao" required>
+
+                     <label for="valor">Valor:</label>
+                     <input type="text" name="valor" id="valor" required>
+
+                    <button type="submit">Criar Loja</button>
+                </form>
+            </div>
         </div>
     </div>
-
 </div>
+
+@await Html.PartialAsync("CreateLojaModal")
+@await Html.PartialAsync("CreateProdutos")
+
+@section scripts {
+        <script>
+            $(document).ready(function () {
+                $('#openCreateLojaModal').click(function () {
+                    $('#createLojaModal').modal('show');
+                });
+
+           
+
+            $('.openCreateProdutos').click(function (e) {
+                // Recupera o valor do data-id do botão clicado
+                var lojaId = $(this).data('id');
+
+                // Atualiza o valor do campo oculto
+                $('#LojaId').val(lojaId);
+
+                // Atualiza o conteúdo do span no modal
+                $('#CreateProdutos #lojaId').text(lojaId);
+
+                // Atualiza o valor do input com id "InputLojaId"
+                $('#InputLojaId').val(lojaId);
+
+                // Mostra o modal
+                $('#CreateProdutos').modal('show');
+            });
+
+
+
+  
+            });
+ </script>
+}
+
+
