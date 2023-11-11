@@ -1,6 +1,6 @@
 ﻿@model List<Loja>
 @{
-    ViewData["Title"] = "Loja Eletrônicos";
+    ViewData["Title"] = "Lista das Loja";
 }
 
 <style type="text/css">
@@ -18,7 +18,7 @@
     .loja {
         display: flex;
         justify-content: space-around;
-        font-size: 20px;
+        font-size: 105%;
         font-weight: bold;
         margin-bottom: 10px;
         background-color: #f8f9fa;
@@ -32,18 +32,14 @@
    .loja p {
         display: flex;
         margin: 0;
-        width: 300px;
+        width: 15%;
         justify-content: center;
    }
 
-    .loja a {
-        position: absolute;
-        text-align: center;
-        right: 50px; 
-        width:150px;
-    }
 
     .btnClass {
+        display: flex;
+        width: 40%;
         text-decoration: none;
         background-color: #0d6efd;
         color: #fff;
@@ -53,6 +49,8 @@
         cursor: pointer;
         border-radius: 10px;
         transition: background-color 0.3s ease;
+        align-content: center;
+        justify-content: center;
     }
 
     .btnClass:hover {
@@ -71,15 +69,48 @@
         display: flex;
         margin: 0 auto;
     }
+    .ContainerButtons{
+         width: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .circle {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btts{
+       color:#d9d9d9;
+    }
+
+    .circle:hover {
+        background-color: #e0e0e0;
+    }
+
+    .btts:hover{
+        color:#0d6efd;
+    }
+   
 
 </style>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 <h1 style="margin-bottom: 2rem; text-align: center;">@ViewData["Title"]</h1>
 
 <div class="Containers">
     <div class="loja borders">
         <p>Nome:</p>
         <p>Cidade:</p>
+        <p>Ver Produtos</p>
+        <p>Adcionar Produtos</p>
 
     </div>
     @foreach (var loja in Model)
@@ -90,12 +121,27 @@
  
             @if (@loja.sections != null)
             {
-                <a class="nav-link btnClass" asp-controller="Loja" asp-action="Produtos" asp-route-id="@loja.Id">Ver Produtos</a>
+              
+                <div class="ContainerButtons">
+                    <a class="circle nav-link" asp-controller="Loja" asp-action="Produtos" asp-route-id="@loja.Id">
+                        <i class="fas fa-eye btts"></i>
+                    </a>
+                </div>
+
+                <div class="ContainerButtons">
+                     <a class="nav-link circle openCreateProdutos" data-id="@loja.Id">
+                        <i class="fa-solid fa-pen btts"></i>
+                     </a>
+                </div>
+                
+         
+
             }
             else
             {
                 <a class="nav-link btnClass openCreateProdutos" data-id="@loja.Id">Criar Produtos</a>
             }
+             
         </div>
     }
 </div>
@@ -108,7 +154,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="CreateProdutosLabel">Criar Novo Produto para Loja ID: <span id="lojaId"></span></h5>
+                <h5 class="modal-title" id="CreateProdutosLabel">Criar Novo Produto para Loja</h5>
             </div>
 
             <div class="modal-body">
@@ -135,7 +181,7 @@
 </div>
 
 @await Html.PartialAsync("CreateLojaModal")
-@await Html.PartialAsync("CreateProdutos")
+
 
 @section scripts {
         <script>
