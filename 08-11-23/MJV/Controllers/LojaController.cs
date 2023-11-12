@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Primitives;
 using MJV.Models;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 
 namespace MJV.Controllers
@@ -69,14 +70,32 @@ namespace MJV.Controllers
         [HttpPost]
         public IActionResult CreateLoja(string nome, string cidade)
         {
+            var verificaLoja = lojas.FirstOrDefault(n => n.Nome == nome);
+            string NomeVerficado = string.Empty;
+
+
+            if (verificaLoja == null)
+            {
+                NomeVerficado = nome;
+            }
+            else
+            {
+                int Qtd = lojas.Count(n => n == verificaLoja);
+                NomeVerficado = nome + " " + Qtd;
+            }
+
             var loja = new Loja
-            {   
+            {
                 Id = lojas.Count + 1,
-                Nome = nome,
+                Nome = NomeVerficado,
                 Cidade = cidade
             };
+
             lojas.Add(loja);
+
             return RedirectToAction("Index", lojas);
+
+            //Tem dois mederos 1 tenho que ajustar a logica 
         }
         [HttpPost]
         public IActionResult CreateProdutos(int LojaId, string section, string nomeProduto, string nomeDescricao, string valorInput)
@@ -90,7 +109,7 @@ namespace MJV.Controllers
                     lojaEncontrada.sections = new List<Section>();
                 }
 
-                var secaoEncontrada = lojaEncontrada.sections.FirstOrDefault(s => s.Nome.ToUpper() == section.ToUpper());
+                var secaoEncontrada = lojaEncontrada.sections.FirstOrDefault(s => s.Nome.ToUpper().Trim() == section.ToUpper().Trim());
 
                 if (secaoEncontrada == null)
                 {
