@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using MJV.Models;
+using System.Globalization;
 using System.Text;
 
 namespace MJV.Controllers
@@ -19,8 +21,8 @@ namespace MJV.Controllers
                 var loja = new Loja
                 {
                     Id = i,
-                    Nome = "SonjaEletronics " + i,
-                    Cidade = "Sonjaquim " + i,
+                    Nome = "Medeiros " + i,
+                    Cidade = "São Joaquim",
                     sections = new List<Section>
                 {
                     new Section
@@ -28,17 +30,17 @@ namespace MJV.Controllers
                         Nome = "Limpeza",
                         Produtos = new List<Produto>
                         {
-                            new Produto { Nome = "Macarrao", Descricao = "Macarrao de preparo rapido", valor = 20.0 },
-                            new Produto { Nome = "Macarrao", Descricao = "Macarrao de preparo rapido", valor = 20.0 },
+                            new Produto { Nome = "Detergente", Descricao = "Macarrao de preparo rapido", valor = 1.69 },
+                            new Produto { Nome = "Vanish White", Descricao = "Macarrao de preparo rapido", valor = 29.99 },
                         }
                     },
                     new Section
                     {
-                        Nome = "Cozinha",
+                        Nome = "Bebidas",
                         Produtos = new List<Produto>
                         {
-                            new Produto { Nome = "Macarrao" + i, Descricao = "Macarrao de preparo rapido", valor = 20.0 },
-                            new Produto { Nome = "Macarrao", Descricao = "Macarrao de preparo rapido", valor = 20.0 },
+                            new Produto { Nome = "Coca Cola", Descricao = "Macarrao de preparo rapido", valor = 5.49 },
+                            new Produto { Nome = "Leite", Descricao = "Macarrao de preparo rapido", valor = 3.60 },
                         }
                     }
                 }
@@ -77,7 +79,7 @@ namespace MJV.Controllers
             return RedirectToAction("Index", lojas);
         }
         [HttpPost]
-        public IActionResult CreateProdutos(int LojaId, string section, string nomeProduto, string nomeDescricao, double valor)
+        public IActionResult CreateProdutos(int LojaId, string section, string nomeProduto, string nomeDescricao, string valorInput)
         {
             var lojaEncontrada = lojas.FirstOrDefault(l => l.Id == LojaId);
 
@@ -85,16 +87,13 @@ namespace MJV.Controllers
             {
                 if (lojaEncontrada.sections == null)
                 {
-                    // Cria uma nova lista de seções se for nula
                     lojaEncontrada.sections = new List<Section>();
                 }
 
-                // Procura a seção existente pelo nome
-                var secaoEncontrada = lojaEncontrada.sections.FirstOrDefault(s => s.Nome == section);
+                var secaoEncontrada = lojaEncontrada.sections.FirstOrDefault(s => s.Nome.ToUpper() == section.ToUpper());
 
                 if (secaoEncontrada == null)
                 {
-                    // Cria uma nova seção e adiciona à lista de seções
                     secaoEncontrada = new Section
                     {
                         Nome = section,
@@ -104,21 +103,19 @@ namespace MJV.Controllers
                     lojaEncontrada.sections.Add(secaoEncontrada);
                 }
 
-                // Adiciona um novo produto à seção existente ou recém-criada
                 var novoProduto = new Produto
                 {
                     Nome = nomeProduto,
                     Descricao = nomeDescricao,
-                    valor = valor
+                    valor = double.Parse(valorInput.Replace(',', '.'), CultureInfo.InvariantCulture)
                 };
 
                 secaoEncontrada.Produtos.Add(novoProduto);
 
-                // Aqui, você pode realizar outras ações, como salvar a loja atualizada no seu repositório de dados
-
                 return RedirectToAction("Index", lojas);
             }
-                return NotFound();
+
+           return NotFound();
 
         }
         public IActionResult DownloadProdutos(int id)
