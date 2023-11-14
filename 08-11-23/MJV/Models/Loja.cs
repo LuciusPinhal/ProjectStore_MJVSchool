@@ -16,4 +16,3 @@
 
     }
 }
-//fazer botoes para ir em duas lojas diferentes

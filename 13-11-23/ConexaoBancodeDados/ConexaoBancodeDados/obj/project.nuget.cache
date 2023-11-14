@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "6WhPnLPK0jX9szBxzw6iuzXDnqCkwm/3mubjPKrdliS5cqY3dpjZXfSbbmh7qLJf/UDR0o2+3Uec8Zot+uxW1w==",
+  "success": true,
+  "projectFilePath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\13-11-23\\ConexaoBancodeDados\\ConexaoBancodeDados\\ConexaoBancodeDados.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Pichau\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Pichau\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}

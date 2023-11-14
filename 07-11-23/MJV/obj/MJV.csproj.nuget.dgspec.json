@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Nova pasta (2)\\08-11-23\\MJV\\MJV.csproj": {}
+    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\07-11-23\\MJV\\MJV.csproj": {}
   },
   "projects": {
-    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Nova pasta (2)\\08-11-23\\MJV\\MJV.csproj": {
+    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\07-11-23\\MJV\\MJV.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Nova pasta (2)\\08-11-23\\MJV\\MJV.csproj",
+        "projectUniqueName": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\07-11-23\\MJV\\MJV.csproj",
         "projectName": "MJV",
-        "projectPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Nova pasta (2)\\08-11-23\\MJV\\MJV.csproj",
+        "projectPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\07-11-23\\MJV\\MJV.csproj",
         "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
-        "outputPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Nova pasta (2)\\08-11-23\\MJV\\obj\\",
+        "outputPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\07-11-23\\MJV\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

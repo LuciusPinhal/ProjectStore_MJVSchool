@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
+using MJV.DALPg;
 using MJV.Models;
 using System.Globalization;
 using System.Linq;
@@ -14,10 +15,12 @@ namespace MJV.Controllers
 
         static LojaController()
         {
+            DALPostegres sql = new DALPostegres();
+           
             // Inicializa a lista de lojas apenas uma vez
-            lojas = new List<Loja>();
+            lojas = sql.ListLojaDB();
 
-            for (int i = 1; i <= 2; i++)
+            for (int i = 2; i <= 4; i++)
             {
                 var loja = new Loja
                 {
@@ -31,8 +34,8 @@ namespace MJV.Controllers
                         Nome = "Limpeza",
                         Produtos = new List<Produto>
                         {
-                            new Produto { Nome = "Detergente", Descricao = "Macarrao de preparo rapido", valor = 1.69 },
-                            new Produto { Nome = "Vanish White", Descricao = "Macarrao de preparo rapido", valor = 29.99 },
+                            new Produto { Nome = "Detergente", Descricao = "Produto para limpeza", valor = 1.69 },
+                            new Produto { Nome = "Vanish White", Descricao = "Produto para limpeza", valor = 29.99 },
                         }
                     },
                     new Section
@@ -40,8 +43,8 @@ namespace MJV.Controllers
                         Nome = "Bebidas",
                         Produtos = new List<Produto>
                         {
-                            new Produto { Nome = "Coca Cola", Descricao = "Macarrao de preparo rapido", valor = 5.49 },
-                            new Produto { Nome = "Leite", Descricao = "Macarrao de preparo rapido", valor = 3.60 },
+                            new Produto { Nome = "Coca Cola", Descricao = "Refrigerante", valor = 5.49 },
+                            new Produto { Nome = "Leite", Descricao = "Bebidas", valor = 3.60 },
                         }
                     }
                 }
@@ -50,11 +53,12 @@ namespace MJV.Controllers
                 lojas.Add(loja);
             }
         }
-
+          
         public IActionResult Index()
         {
             return View(lojas);
         }
+
 
         public IActionResult Produtos(int id)
         {

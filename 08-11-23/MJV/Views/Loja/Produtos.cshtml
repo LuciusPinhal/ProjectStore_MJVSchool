@@ -45,9 +45,52 @@
   <a class="botao-lojas" href="@Url.Action("DownloadProdutos", new { id = Model.First().Id })">Download Produtos</a>
 </div>
 
-
 @foreach (var loja in Model)
 {
    <h1>@loja.Nome</h1>
-   <partial name="_Produtos" model="@loja.sections"/>
+       <partial name="_Produtos" model="@loja.sections"/>
+}
+
+
+
+<div class="modal fade" id="CreateProdutos" tabindex="-1" role="dialog" aria-labelledby="CreateProdutosLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="CreateProdutosLabel">Criar Novo Produto para Loja</h5>
+            </div>
+
+            <div class="modal-body">
+                <form id="createProdutosForm" asp-action="CreateProdutos" asp-controller="Loja" method="post">
+                    <input type="hidden" id="InputLojaId" name="LojaId" />
+
+                    <label for="section">Seção:</label>
+                    <input type="text" name="section" id="section" required>
+
+                    <label for="nomeProduto">Nome Produto:</label>
+                    <input type="text" name="nomeProduto" id="nomeProduto" required>
+
+                     <label for="nomeDescricao">Descrição do Produto:</label>
+                     <input type="text" name="nomeDescricao" id="nomeDescricao" required>
+
+                     <label for="valor">Valor:</label>
+                     <input type="text" name="valorInput" id="valor" required>
+
+                    <button type="submit">Criar Loja</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script>     
+        $('.openCreateLojaModal').click(function () {
+        console.log("Teste");
+
+         $('#CreateProdutos').modal('show');
+            
+        });
+    </script>
 }

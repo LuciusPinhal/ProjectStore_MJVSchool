@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "k8cxDmLeXhX5VeltknHtDsUjTp6P5nxldetSgJmse6LSCDZaV2wUHYSUbnS63wJNzIAZhGGdvKbB79JOfRGNAQ==",
+  "dgSpecHash": "4fboVdbI9Co/ru+VHD8J22bBKTx7WmX5oh0dGyuK7jSnoVBKjCVrHlCNSmUwLtsS////eiPqt7W/FFRBp0v9Fg==",
   "success": true,
-  "projectFilePath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Nova pasta (2)\\08-11-23\\MJV\\MJV.csproj",
+  "projectFilePath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\07-11-23\\MJV\\MJV.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pichau\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\Pichau\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

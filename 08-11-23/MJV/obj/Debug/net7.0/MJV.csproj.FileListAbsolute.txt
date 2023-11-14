@@ -667,3 +667,4 @@ C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\08-11-23\MJV\obj\Debug\net7.0
 C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\08-11-23\MJV\obj\Debug\net7.0\MJV.pdb
 C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\08-11-23\MJV\obj\Debug\net7.0\MJV.genruntimeconfig.cache
 C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\08-11-23\MJV\obj\Debug\net7.0\ref\MJV.dll
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\08-11-23\MJV\bin\Debug\net7.0\Npgsql.dll
