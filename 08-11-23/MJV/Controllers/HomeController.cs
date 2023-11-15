@@ -23,6 +23,7 @@ namespace MJV.Controllers
 
             //Li esse usuario na base de dados
             Usuario usuario = new Usuario();
+            usuario.Id = new Random().Next(1, 1000);
             usuario.Email = "ASdasda@gmail.com";
             usuario.Nome = "Lucius";
             usuario.SobreNome = "Pinhal Ferreira";
@@ -51,29 +52,44 @@ namespace MJV.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string Nome, string SobreNome) 
+        public IActionResult Index([Bind("Nome", "SobreNome")] Usuario usuario) 
         {
             ViewBag.Autenticado = true;
             ViewData["NomeCompleto"] = "Diogo Coista Santos";
             TempData["Mensagem"] = "Mensagem teste";
             var u = new Usuario()
             {
-                Nome = Nome,
-                SobreNome = SobreNome
+                Nome = usuario.Nome,
+                SobreNome = usuario.SobreNome
             };
             return View(u); ;
         }
 
+        public IActionResult Deletar(int id)
+        {
+            Console.WriteLine(id);
+            //deletar banco
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Deletar1(string nome)
+        {
+            Console.WriteLine(nome);
+            //deletar banco
+            return RedirectToAction("Index");
+        }
         public IActionResult Privacy()
         {
+
             List<Usuario> usuarios = new List<Usuario>();
             Usuario usuario;
             for (int i= 0; i <= 9; i++)
             {
                 usuario = new Usuario();
                 usuario.Email = "ASdasda@gmail.com";
-                usuario.Nome = "Lucius" + i;
+                usuario.Nome = "Lucius - " + i;
                 usuario.SobreNome = "Pinhal Ferreira";
+                usuario.Id = i;
 
                 usuario.Habilidades = new List<Habilidade>();
                 usuario.Habilidades.Add(new Habilidade() { Nome = "C#" });

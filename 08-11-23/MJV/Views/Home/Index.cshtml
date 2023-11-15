@@ -8,52 +8,11 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-@*
-<form asp-action="ProcessaFormulario" asp-controller="Home" method="post">
-
-   Nome: <input type="text" name="Nome" />
-    SobreNome: <input type="text" name="SobreNome" />
-    <h1>@Model.Nome</h1>
-    <h1>@Model.SobreNome</h1>
-    <h1>@Model.Email</h1>
-    @if (Model.Habilidades != null)
-    {
-        <partial name="_Habilidade" model="@Model.Habilidades" />
-        
-    }
-
-   //@foreach(var habilidade in Model.Habilidades)
-    //{
-        //<p>@habilidade.Nome</p>
-    //}
-
-    <b>@ViewBag.Autenticado</b>
-
-    @if (ViewBag.Autenticado)
-    {
-        <p>Autencidado</p>
-    }
-    else
-    {
-        <p> Nao Auteticado</p>
-    }
-
-    <i>@ViewData["NomeCompleto"]</i>
-    @if (TempData["Mensagem"] != null)
-    {
-        <h3>@TempData["Mensagem"]</h3>
-    }
-
-  
-    <hr>
-
-    <input  type="submit" value="Postar"/>
-</form>*@
 
 <form method="post">
 
-   Nome: <input type="text" name="Nome" />
-    SobreNome: <input type="text" name="SobreNome" />
+   Nome: <input type="text" name="Nome"  asp-for="@Model.Nome"/>
+    SobreNome: <input type="text" name="SobreNome"  asp-for="SobreNome" />
     <h1>@Model.Nome</h1>
     <h1>@Model.SobreNome</h1>
     <h1>@Model.Email</h1>
@@ -62,11 +21,6 @@
             <partial name="_Habilidade" model="@Model.Habilidades" />
 
     }
-
-    @*    @foreach(var habilidade in Model.Habilidades)
-    {
-        <p>@habilidade.Nome</p>
-    }*@
 
     <b>@ViewBag.Autenticado</b>
 
@@ -90,3 +44,5 @@
 
     <input  type="submit" value="Postar"/>
 </form>
+
+    <a asp-controller="" asp-action="" asp-route-id="">Deletar</a>

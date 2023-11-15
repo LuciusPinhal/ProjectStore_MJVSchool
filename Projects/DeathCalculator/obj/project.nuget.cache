@@ -1,8 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "RzyYG4JQ+5+FYFPQuJiWOFD4okXmwripNiNph1omhzEshzSKewjaI8TplnF+4cVOgivpwHERhgooPbZ9po7AaA==",
-  "success": true,
-  "projectFilePath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\MVJ - CalculadoraDaMorte\\MVJ - CalculadoraDaMorte\\MJV - CalculadoraDaMorte.csproj",
+  "dgSpecHash": "WXWPa78zwqBnhh4pmFa24daSIkq9qasqZ2bwsw9iE/bwbpSJk/x5xRIttQzL4a8QvLXG2e4s0RIG9UFE51jhpw==",
+  "success": false,
+  "projectFilePath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\Projects\\DeathCalculator\\CalculadoraDaMorte.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1104",
+      "level": "Error",
+      "message": "Não é possível encontrar o projeto 'C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\Projects\\Pessoa\\Pessoa.csproj'. Verifique se a referência do projeto é válida e se o arquivo de projeto existe.",
+      "libraryId": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\Projects\\Pessoa\\Pessoa.csproj",
+      "targetGraphs": [
+        "net7.0"
+      ]
+    }
+  ]
 }

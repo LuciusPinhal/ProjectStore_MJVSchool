@@ -15,10 +15,25 @@
 }
 <p> La hora es: @hora.ToShortDateString()</p>
 
+<table>
+    <tr>Nome</tr>
+    <tr>Nome</tr>
+
+
 @foreach(var usuario in Model)
 {
-    <h1>@usuario.Nome</h1>
-    <h1>@usuario.SobreNome</h1>
-    <h1>@usuario.Email</h1>
+    <tr>
+
+        <td>@usuario.Nome</td>
+        <td><@usuario.SobreNome></td>
+
+        <td><a asp-controller="Home" asp-action="Deletar" asp-route-id="@usuario.Id">Deletar</a></td>
+
+              <td><a asp-controller="Home" asp-action="Deletar1" asp-route-nome="@usuario.Nome">Deletar</a></td>
+                   
+    </tr>
+    
+  
     <partial name="_Habilidade" model="@usuario.Habilidades"/>
-}
+    }
+</table>

@@ -1,0 +1,88 @@
+﻿<style type="text/css">
+    /* Estilize o fundo do modal */
+.modal-content {
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+/* Estilize o cabeçalho do modal */
+.modal-header {
+    background-color: #007bff;
+    color: #fff;
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem;
+}
+
+/* Estilize o título do modal */
+.modal-title {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+/* Estilize o corpo do modal */
+.modal-body {
+    padding: 1rem;
+}
+
+/* Estilize os rótulos e inputs do formulário */
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+form input {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+
+/* Estilize o botão de submit */
+form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    margin:0 auto;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+ </style>
+<!-- Conteúdo do modal -->
+<div class="modal fade" id="createLojaModal" tabindex="-1" role="dialog" aria-labelledby="createLojaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createLojaModalLabel">Criar Nova Loja</h5>
+            </div>
+
+            <div class="modal-body">
+
+                <form asp-action="CreateLoja" asp-controller="loja" method="post">
+
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" id="nome" required>
+
+                    <label for="nome">Cidade:</label>
+                    <input type="text" name="Cidade" id="Cidade" required>
+
+
+                     <button type="submit">Criar Loja</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
