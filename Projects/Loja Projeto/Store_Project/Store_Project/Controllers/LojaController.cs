@@ -15,43 +15,43 @@ namespace Store_Project.Controllers
     
         static LojaController()
         {
-            DALPostegres sql = new DALPostegres();
 
+            DALPostegres sql = new DALPostegres();
             // Inicializa a lista de lojas apenas uma vez
             lojas = sql.ListLojaDB();
 
-            for (int i = 2; i <= 4; i++)
-            {
-                var loja = new Loja
-                {
-                    Id = i,
-                    Nome = "Medeiros " + i,
-                    Cidade = "São Joaquim",
-                    sections = new List<Section>
-                {
-                    new Section
-                    {
-                        Nome = "Limpeza",
-                        Produtos = new List<Produto>
-                        {
-                            new Produto { Nome = "Detergente", Descricao = "Produto para limpeza", valor = 1.69 },
-                            new Produto { Nome = "Vanish White", Descricao = "Produto para limpeza", valor = 29.99 },
-                        }
-                    },
-                    new Section
-                    {
-                        Nome = "Bebidas",
-                        Produtos = new List<Produto>
-                        {
-                            new Produto { Nome = "Coca Cola", Descricao = "Refrigerante", valor = 5.49 },
-                            new Produto { Nome = "Leite", Descricao = "Bebidas", valor = 3.60 },
-                        }
-                    }
-                }
-                };
+            //for (int i = 2; i <= 4; i++)
+            //{
+            //    var loja = new Loja
+            //    {
+            //        Id = i,
+            //        Nome = "Medeiros " + i,
+            //        Cidade = "São Joaquim",
+            //        Sections = new List<Section>
+            //    {
+            //        new Section
+            //        {
+            //            Nome = "Limpeza",
+            //            Produtos = new List<Produto>
+            //            {
+            //                new Produto { Nome = "Detergente", Descricao = "Produto para limpeza", Valor = 1.69 },
+            //                new Produto { Nome = "Vanish White", Descricao = "Produto para limpeza", Valor = 29.99 },
+            //            }
+            //        },
+            //        new Section
+            //        {
+            //            Nome = "Bebidas",
+            //            Produtos = new List<Produto>
+            //            {
+            //                new Produto { Nome = "Coca Cola", Descricao = "Refrigerante", Valor = 5.49 },
+            //                new Produto { Nome = "Leite", Descricao = "Bebidas", Valor = 3.60 },
+            //            }
+            //        }
+            //    }
+            //    };
 
-                lojas.Add(loja);
-            }
+            //    lojas.Add(loja);
+            //}
         }
 
         public IActionResult Index()
@@ -96,7 +96,8 @@ namespace Store_Project.Controllers
             };
 
             lojas.Add(loja);
-
+            DALPostegres sql = new DALPostegres();
+            sql.CreateLoja(loja);
             return RedirectToAction("Index", lojas);
 
             //Tem dois mederos 1 tenho que ajustar a logica 
@@ -104,16 +105,19 @@ namespace Store_Project.Controllers
         [HttpPost]
         public IActionResult CreateProdutos(int LojaId, string section, string nomeProduto, string nomeDescricao, string valorInput)
         {
+            DALPostegres sql = new DALPostegres();
+  
             var lojaEncontrada = lojas.FirstOrDefault(l => l.Id == LojaId);
 
             if (lojaEncontrada != null)
             {
-                if (lojaEncontrada.sections == null)
+                if (lojaEncontrada.Sections == null)
                 {
-                    lojaEncontrada.sections = new List<Section>();
+                    lojaEncontrada.Sections = new List<Section>();
                 }
 
-                var secaoEncontrada = lojaEncontrada.sections.FirstOrDefault(s => s.Nome.ToUpper().Trim() == section.ToUpper().Trim());
+                var secaoEncontrada = lojaEncontrada.Sections.FirstOrDefault(s => s.Nome.ToUpper().Trim() == section.ToUpper().Trim());
+                //var idEncotrado = lojaEncontrada.Sections.FirstOrDefault(s => s.Id == section.Id);
 
                 if (secaoEncontrada == null)
                 {
@@ -123,16 +127,19 @@ namespace Store_Project.Controllers
                         Produtos = new List<Produto>()
                     };
 
-                    lojaEncontrada.sections.Add(secaoEncontrada);
+                    sql.CreateSecao(lojaEncontrada.Id, secaoEncontrada);
+                    lojaEncontrada.Sections.Add(secaoEncontrada);
                 }
 
                 var novoProduto = new Produto
                 {
                     Nome = nomeProduto,
                     Descricao = nomeDescricao,
-                    valor = double.Parse(valorInput.Replace(',', '.'), CultureInfo.InvariantCulture)
+                    Valor = double.Parse(valorInput.Replace(',', '.'), CultureInfo.InvariantCulture)
                 };
-
+                Console.WriteLine(secaoEncontrada.Id);
+        
+                //sql.CreateProduto(secaoEncontrada.Id, novoProduto);
                 secaoEncontrada.Produtos.Add(novoProduto);
 
                 return RedirectToAction("Index", lojas);
@@ -154,7 +161,7 @@ namespace Store_Project.Controllers
             produtosText.AppendLine($"### Produtos da Loja: {loja.Nome} ###");
             produtosText.AppendLine(); // Adiciona uma linha em branco entre os produtos
 
-            foreach (var section in loja.sections)
+            foreach (var section in loja.Sections)
             {
                 produtosText.AppendLine($"### {section.Nome} ###");
 
@@ -162,7 +169,7 @@ namespace Store_Project.Controllers
                 {
                     produtosText.AppendLine($"Nome do Produto: {produto.Nome}");
                     produtosText.AppendLine($"Descrição: {produto.Descricao}");
-                    produtosText.AppendLine($"Valor: {produto.valor}");
+                    produtosText.AppendLine($"Valor: {produto.Valor}");
                     produtosText.AppendLine();
                 }
             }
