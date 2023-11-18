@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MJV.DALPg;
 using MJV.Models;
 using System.Diagnostics;
 
@@ -7,16 +8,19 @@ namespace MJV.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IConfiguration _configuration;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IConfiguration configuration)
         {
             _logger = logger;
+            _configuration = configuration;
         }
 
 
         [HttpGet]
         public IActionResult Index()
         {
+           
             ViewBag.Autenticado = true;
             ViewData["NomeCompleto"] = "Diogo Coista Santos";
             TempData["Mensagem"] = "Mensagem teste";
@@ -81,6 +85,10 @@ namespace MJV.Controllers
         public IActionResult Privacy()
         {
 
+            string conexao = _configuration.GetConnectionString("conexao_com_banco_postegres");
+            DALPostegres sql = new DALPostegres();
+            //sql.ListarAlunos();
+            sql.InserirAluno("Lucius", "Pinhal", "Email@teste.com", conexao);
             List<Usuario> usuarios = new List<Usuario>();
             Usuario usuario;
             for (int i= 0; i <= 9; i++)

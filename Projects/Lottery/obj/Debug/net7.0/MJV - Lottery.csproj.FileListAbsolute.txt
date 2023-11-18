@@ -3,3 +3,18 @@ C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - Calcul
 C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - Lottery.AssemblyInfoInputs.cache
 C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - Lottery.AssemblyInfo.cs
 C:\Lubilus2\Program\Programação\Aulas C#\MVJ - CalculadoraDaMorte\MVJ - CalculadoraDaMorte\obj\Debug\net7.0\MJV - Lottery.csproj.CoreCompileInputs.cache
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\bin\Debug\net7.0\MJV - Lottery.exe
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\bin\Debug\net7.0\MJV - Lottery.deps.json
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\bin\Debug\net7.0\MJV - Lottery.runtimeconfig.json
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\bin\Debug\net7.0\MJV - Lottery.dll
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\bin\Debug\net7.0\MJV - Lottery.pdb
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\obj\Debug\net7.0\MJV - Lottery.csproj.AssemblyReference.cache
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\obj\Debug\net7.0\MJV - Lottery.GeneratedMSBuildEditorConfig.editorconfig
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\obj\Debug\net7.0\MJV - Lottery.AssemblyInfoInputs.cache
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\obj\Debug\net7.0\MJV - Lottery.AssemblyInfo.cs
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\obj\Debug\net7.0\MJV - Lottery.csproj.CoreCompileInputs.cache
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\obj\Debug\net7.0\MJV - Lottery.dll
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\obj\Debug\net7.0\refint\MJV - Lottery.dll
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\obj\Debug\net7.0\MJV - Lottery.pdb
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\obj\Debug\net7.0\MJV - Lottery.genruntimeconfig.cache
+C:\Lubilus2\Program\Programação\Aulas C#\Git MJV\Projects\Lottery\obj\Debug\net7.0\ref\MJV - Lottery.dll

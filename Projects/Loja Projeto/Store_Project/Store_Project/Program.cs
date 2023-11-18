@@ -3,10 +3,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-
-var c = builder.Configuration.GetConnectionString("conexao_com_banco_postegres");
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

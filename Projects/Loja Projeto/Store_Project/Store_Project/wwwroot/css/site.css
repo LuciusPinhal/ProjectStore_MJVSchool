@@ -20,3 +20,20 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+form input {
+
+    margin-bottom: 0 !important;
+  
+}
+.modal-header {
+    margin-bottom: 20px;
+}
+.modal-header {
+    display: flex;
+    padding: 1.5rem !important;
+    align-items: center;
+    justify-content: center;
+}
+
+

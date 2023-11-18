@@ -6,6 +6,11 @@ namespace MJV.Controllers
     {
         public IActionResult Index()
         {
+            Exemplo.calculaTarifaServico calcula = new Exemplo.calculaTarifaServico();
+            calcula.cepOrigem = "14500";
+
+
+
             return View();
         }
         public IActionResult Pastel()

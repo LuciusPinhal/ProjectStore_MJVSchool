@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MJV", "MJV\MJV.csproj", "{6E28EBCF-109F-4F8C-8114-79C0B76E0828}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MJV", "MJV\MJV.csproj", "{6E28EBCF-109F-4F8C-8114-79C0B76E0828}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MJV - Lottery", "..\Projects\Lottery\MJV - Lottery.csproj", "{D7F6FB04-FBEF-48B4-942C-0347D0BD65E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6E28EBCF-109F-4F8C-8114-79C0B76E0828}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E28EBCF-109F-4F8C-8114-79C0B76E0828}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E28EBCF-109F-4F8C-8114-79C0B76E0828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F6FB04-FBEF-48B4-942C-0347D0BD65E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F6FB04-FBEF-48B4-942C-0347D0BD65E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F6FB04-FBEF-48B4-942C-0347D0BD65E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F6FB04-FBEF-48B4-942C-0347D0BD65E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

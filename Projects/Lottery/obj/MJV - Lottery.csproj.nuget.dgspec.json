@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\MVJ - CalculadoraDaMorte\\MVJ - CalculadoraDaMorte\\MJV - Lottery.csproj": {}
+    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\Projects\\Lottery\\MJV - Lottery.csproj": {}
   },
   "projects": {
-    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\MVJ - CalculadoraDaMorte\\MVJ - CalculadoraDaMorte\\MJV - Lottery.csproj": {
+    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\Projects\\Lottery\\MJV - Lottery.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\MVJ - CalculadoraDaMorte\\MVJ - CalculadoraDaMorte\\MJV - Lottery.csproj",
+        "projectUniqueName": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\Projects\\Lottery\\MJV - Lottery.csproj",
         "projectName": "MJV - Lottery",
-        "projectPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\MVJ - CalculadoraDaMorte\\MVJ - CalculadoraDaMorte\\MJV - Lottery.csproj",
+        "projectPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\Projects\\Lottery\\MJV - Lottery.csproj",
         "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
-        "outputPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\MVJ - CalculadoraDaMorte\\MVJ - CalculadoraDaMorte\\obj\\",
+        "outputPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\Projects\\Lottery\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

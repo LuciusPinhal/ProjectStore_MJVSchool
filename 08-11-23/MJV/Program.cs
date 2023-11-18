@@ -3,6 +3,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+var c = builder.Configuration.GetConnectionString("conexao_com_banco_postegres");
+//builder.Services.AddScoped
+//https://www.youtube.com/watch?v=iGyqP4_cXXo&t=604s
+//builder.Services.AddTransient
+builder.Services.AddSingleton<Loteria>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

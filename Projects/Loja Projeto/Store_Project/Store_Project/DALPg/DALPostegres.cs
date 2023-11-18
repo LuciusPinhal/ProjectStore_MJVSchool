@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Npgsql;
 using Store_Project.Models;
+using static System.Collections.Specialized.BitVector32;
 //using NuGet.Protocol.Plugins;
 //using System.Data;
 
@@ -14,6 +15,8 @@ namespace Store_Project.DALPg
         public List<Models.Loja> ListLojaDB()
         {
             List<Models.Loja> listLoja= new List<Models.Loja>();
+            Models.Section section = null;
+            Models.Loja loja = null;
 
             using (NpgsqlConnection conn = new NpgsqlConnection(strConnection))
             {
@@ -25,16 +28,17 @@ namespace Store_Project.DALPg
                            "LEFT JOIN public.section ON loja.id = section.loja_id " +
                            "LEFT JOIN public.produto ON section.id = produto.section_id", conn))
                 {
-                    Models.Loja loja = null;
-                    Models.Section section = null;
 
+                 
+           
                     using (NpgsqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
                         {
+                            //int lojaId = reader.GetInt32(0);
 
-                
-       
+                            //Models.Loja loja = listLoja.FirstOrDefault(l => l.Id == lojaId);
+
                             if (loja == null || loja.Id != reader.GetInt32(0))
                             {
                                 loja = new Loja
@@ -51,30 +55,38 @@ namespace Store_Project.DALPg
 
                             if (!reader.IsDBNull(3))
                             {
-                
-                                if (section == null || section.Nome != reader.GetString(3))
-                                { 
-                                    section = new Section
-                                    {
-                                        Id = reader.GetInt32(7),
-                                        Nome = reader.GetString(3),
-                                        Produtos = new List<Produto>()
-                                    };
+                                int sectionId = reader.GetInt32(7);
+                                section = loja.Sections.FirstOrDefault(s => s.Id == sectionId);
 
-                                    loja.Sections.Add(section);
+                                // Seção não encontrada pelo ID, verificar pelo nome
+                                if (section == null || section.Nome != reader.GetString(3))
+                                {
+                                    section = loja.Sections.FirstOrDefault(s => s.Nome == reader.GetString(3));
+                             
+                                    if (section == null)
+                                    {
+                                        section = new Models.Section
+                                        {
+                                            Id = sectionId,
+                                            Nome = reader.GetString(3),
+                                            Produtos = new List<Produto>()
+                                        };
+
+                                        loja.Sections.Add(section);
+                                    }
                                 }
-                          
                             }
-                            
+
                             if (!reader.IsDBNull(4))
                             {
                                 Produto produto = new Produto()
                                 {
                                     Nome = reader.GetString(4),
                                     Descricao = reader.GetString(5),
-                                    Valor = reader.GetDouble(6)
+                                    Valor = reader.GetDouble(6),
+                             
                                 };
-                                
+
                                 section.Produtos.Add(produto);
                             }
                         
@@ -108,9 +120,9 @@ namespace Store_Project.DALPg
 
         }
 
-        public bool CreateSecao(int lojaId, Section Createdsection)
+        public int CreateSecao(int lojaId, Models.Section CreatedSection)
         {
-            int linhasAfetadas = 0;
+           
 
             using (NpgsqlConnection conn = new NpgsqlConnection(strConnection))
             {
@@ -120,20 +132,37 @@ namespace Store_Project.DALPg
                     "INSERT INTO public.section (loja_id, nome) VALUES (@lojaId, @nome) RETURNING id", conn))
                 {
                     cmd.Parameters.AddWithValue("lojaId", lojaId);
-                    cmd.Parameters.AddWithValue("nome", Createdsection.Nome);
+                    cmd.Parameters.AddWithValue("nome", CreatedSection.Nome);
 
                     // Obtém o Id da nova seção após a inserção
-                    linhasAfetadas = cmd.ExecuteNonQuery();
+                    int novaSecaoId = (int)cmd.ExecuteScalar();
                     //adcionar produtos na secao
+
+                    return novaSecaoId;
                 }
             }
 
-            return linhasAfetadas > 0;
         }
 
-        public bool CreateProduto()
+        public bool CreateProduto(Produto produto)
         {
             int linhasAfetadas = 0;
+            using (NpgsqlConnection conn = new NpgsqlConnection(strConnection))
+            {
+                conn.Open();
+
+                using (NpgsqlCommand cmd = new NpgsqlCommand(
+                   "INSERT INTO public.produto (nome, descricao, valor, section_id) VALUES (@nome, @descricao, @valor, @section_id)", conn))
+                {
+                    cmd.Parameters.AddWithValue("nome", produto.Nome);
+                    cmd.Parameters.AddWithValue("descricao", produto.Descricao);
+                    cmd.Parameters.AddWithValue("valor", produto.Valor);
+                    cmd.Parameters.AddWithValue("section_id", produto.Section_id);
+
+                    linhasAfetadas = cmd.ExecuteNonQuery();
+                }
+            }
+          
             return linhasAfetadas > 0;
         }
     }

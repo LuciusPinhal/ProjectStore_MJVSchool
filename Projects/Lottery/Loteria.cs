@@ -6,7 +6,7 @@ using System.Runtime.Intrinsics.X86;
 
 namespace MJVCurso
 {
-    class Program
+    class Loteria
     {
         static void Main(string[] args)
         {

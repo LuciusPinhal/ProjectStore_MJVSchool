@@ -103,11 +103,16 @@ namespace Store_Project.Controllers
             //Tem dois mederos 1 tenho que ajustar a logica 
         }
         [HttpPost]
-        public IActionResult CreateProdutos(int LojaId, string section, string nomeProduto, string nomeDescricao, string valorInput)
+        public IActionResult CreateProdutos(int LojaId, string? section, string selectedSection, string nomeProduto, string nomeDescricao, string valorInput)
         {
             DALPostegres sql = new DALPostegres();
   
             var lojaEncontrada = lojas.FirstOrDefault(l => l.Id == LojaId);
+
+            if (section == null)
+            {
+               section = selectedSection;
+            }
 
             if (lojaEncontrada != null)
             {
@@ -127,7 +132,9 @@ namespace Store_Project.Controllers
                         Produtos = new List<Produto>()
                     };
 
-                    sql.CreateSecao(lojaEncontrada.Id, secaoEncontrada);
+
+                    int novaSecaoId = sql.CreateSecao(lojaEncontrada.Id, secaoEncontrada);           
+                    secaoEncontrada.Id = novaSecaoId;
                     lojaEncontrada.Sections.Add(secaoEncontrada);
                 }
 
@@ -135,11 +142,12 @@ namespace Store_Project.Controllers
                 {
                     Nome = nomeProduto,
                     Descricao = nomeDescricao,
-                    Valor = double.Parse(valorInput.Replace(',', '.'), CultureInfo.InvariantCulture)
+                    Valor = double.Parse(valorInput.Replace(',', '.'), CultureInfo.InvariantCulture),
+                    Section_id = secaoEncontrada.Id
                 };
-                Console.WriteLine(secaoEncontrada.Id);
-        
-                //sql.CreateProduto(secaoEncontrada.Id, novoProduto);
+               
+
+                sql.CreateProduto(novoProduto);
                 secaoEncontrada.Produtos.Add(novoProduto);
 
                 return RedirectToAction("Index", lojas);
