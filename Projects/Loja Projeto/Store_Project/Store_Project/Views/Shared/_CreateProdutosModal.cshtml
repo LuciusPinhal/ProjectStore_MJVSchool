@@ -1,0 +1,81 @@
+﻿
+<!-- Conteúdo do modal -->
+<div class="modal fade" id="CreateProdutos" tabindex="-1" role="dialog" aria-labelledby="CreateProdutosLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="CreateProdutosLabel">Criar nova seção para loja: </h5>
+            </div>
+
+            <div class="modal-body">
+                <form id="createProdutosForm" asp-action="CreateProdutos" asp-controller="Loja" method="post">
+                    <input type="hidden" id="InputLojaId" name="LojaId" />
+
+                    <div class="file-input-wrapper form-group">   
+                        <div class="file-input-container input-container" id="additionalFields">
+                            <label for="section" class="file-input">Seção:</label>
+
+                            <select id="section" class="secao" onchange="checkOption()" name="selectedSection">
+
+                                @{ 
+                                    var secoesUnicas = new HashSet<string>();
+                                    foreach (var loja in Model)
+
+                                    {   
+                                        @if (loja.Sections != null)
+                                        {
+
+                                            @foreach (var Section in loja.Sections)
+                                            {
+
+                                                if (secoesUnicas.Add(Section.Nome))
+                                                {
+                                                    <option value="@Section.Nome">@Section.Nome</option>
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                                <option value="NovaSectionLojas">Adcionar outra seção</option>
+                            </select>
+
+
+                            <div id="novaSecaoInput" class="select-input-container input-container" style="display: none;margin-left: 20px;">
+                                      <label for="Newsection" class="file-input" style="top: -15px;">Nova Seção:</label>
+                                <input type="text" name="section" id="section" placeholder="Digite o nome da nova seção">
+                            </div>
+
+                        </div>
+                    </div>
+
+                     <div class="file-input-wrapper form-group" id="additionalFields">   
+
+                        <p class="NewProduto">Produto</p>
+
+                       <div class="file-input-container input-container remove-continer">
+                            <label for="nomeProduto" class="file-input">Nome:</label>
+                            <input type="text" name="nomeProduto" id="nomeProduto" required>
+                       </div>   
+
+                        <div class="file-input-container input-container remove-continer" >
+                            <label for="nomeDescricao" class="file-input">Descrição:</label>
+                            <input type="text" name="nomeDescricao" id="nomeDescricao" required>
+                        </div>
+
+                        <div class="file-input-container input-container remove-continer">
+                            <label for="valor" class="file-input">Valor:</label>
+                            <input type="text" name="valorInput" id="valor" required>
+                        </div>
+
+                     </div>
+
+                    <button type="submit" class="formBtn">Criar</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
