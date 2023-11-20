@@ -1,6 +1,7 @@
 ﻿@model List<Loja>
 @{
     ViewData["Title"] = "Lista das Loja";
+
 }
 
 <style type="text/css">
@@ -18,6 +19,10 @@
         border-radius: 10px;
         box-shadow: 0 0 5px #ccc;
         position: relative;
+    }
+    .ContainerList{
+        max-height: 35vh;
+        overflow-y: auto;
     }
 
     .loja {
@@ -40,7 +45,10 @@
         width: 15%;
         justify-content: center;
    }
-
+   #additionalFields{
+     border: 2px solid #ccc;
+    padding: 16px;
+   }
 
     .btnClass {
         display: flex;
@@ -105,6 +113,10 @@
     .btts:hover{
         color:#0d6efd;
     }
+    .modalSelecionado{
+        margin:0 auto;
+        margin-bottom: 2rem;
+    }
 
 
    /* modal tamanho centro*/
@@ -115,61 +127,86 @@
 
     /*Estilo Modal?*/
 
-.file-input {
-    position: absolute;
-    top: -16px;
-    left: 8px;
-    background-color: #fff;
-    padding: 5px;
-    font-weight: bold;
-    font-size: 14px;
-    z-index: 1;
-}
+    .file-input {
+        position: absolute;
+        top: -16px;
+        left: 8px;
+        background-color: #fff;
+        padding: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        z-index: 1;
+    }
 
     .file-input input[type="file"] {
         width: 100%;
     }
 
-.file-input-container {
-    flex: 1;
-    display:flex;
-    position: relative;
-    border: 2px solid #ccc;
-    padding: 15px;
-    margin-right: 10px;
-}
+    .file-input-container {
+        flex: 1;
+        display:flex;
+        position: relative;
+        border: 2px solid #ccc;
+        padding: 15px;
+  
+    }
 
-.input-container {
-    width: 115%;
-}
+    .input-container {
+        width: 115%;
 
-.file-input-wrapper {
-    display: flex;
-    width: 100%;
-}
+    }
 
-.form-group {
-    margin-bottom: 2rem;
-}
+    .file-input-wrapper {
+        display: flex;
+        width: 100%;
+    }
 
-input[type="text"], select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+    .form-group {
+        margin-bottom: 3rem;
+    }
 
-.formBtn {
-    display: flex;
-    margin: 0 auto;
-    margin-bottom: 2%;
-    width: 50%;
-    height: 50px;
-    font-weight: 700;
-    align-items: center;
-    justify-content: center;
-}
+    input[type="text"], select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+        box-sizing: border-box;
+    }
+
+    .formBtn {
+        display: flex;
+        margin: 0 auto;
+        margin-bottom: 2%;
+        width: 50%;
+        height: 50px;
+        font-weight: 700;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .select-input-container  {
+        position: relative;
+        margin-right: 10px;
+    }
+
+    .remove-continer{
+        border:none;
+        padding: 0;
+    }
+    .NewProduto{
+        position: absolute;
+        margin-top: -37px;
+        left: 24px;
+        background-color: #fff;
+        padding: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        z-index: 1;
+    }
+
+
 
 </style>
 
@@ -181,40 +218,54 @@ input[type="text"], select {
         <p>Nome:</p>
         <p>Cidade:</p>
         <p>Ver Produtos</p>
-        <p>Adcionar Produtos</p>
+        <p>Adicionar Produto</p>
+        <p>Editar Loja</p>
+        <p>Excluir Loja</p>
 
     </div>
-    @foreach (var loja in Model)
-    {
-        <div class="loja">
-            <p>@loja.Nome</p>
-            <p>@loja.Cidade</p>
+    <div class="ContainerList">
+        @foreach (var loja in Model)
+        {
+            <div class="loja">
+                <p>@loja.Nome</p>
+                <p>@loja.Cidade</p>
  
-            @if (@loja.Sections != null && @loja.Sections.Count > 0)
-            {
+                @if (@loja.Sections != null && @loja.Sections.Count > 0)
+                {
               
-                <div class="ContainerButtons">
-                    <a class="circle nav-link" asp-controller="Loja" asp-action="Produtos" asp-route-id="@loja.Id">
-                        <i class="fas fa-eye btts"></i>
-                    </a>
-                </div>
+                    <div class="ContainerButtons">
+                        <a class="circle nav-link"  title="Visualizar Produtos" asp-controller="Loja" asp-action="Produtos" asp-route-id="@loja.Id">
+                            <i class="fas fa-eye btts"></i>
+                        </a>
+                    </div>
 
-                <div class="ContainerButtons">
-                             <a class="nav-link circle openCreateProdutos" data-id="@loja.Id" data-lojanome="@loja.Nome">
-                        <i class="fa-solid fa-pen btts"></i>
-                     </a>
-                </div>
+                    <div class="ContainerButtons">
+                        <a class="nav-link circle openCreateProdutos"  title="Adcionar Seção e Produto" data-id="@loja.Id" data-lojanome="@loja.Nome">                   
+                            <i class="fa-solid fa-plus btts"></i>
+                        </a>
+                    </div>
+                    <div class="ContainerButtons">
+                        <a class="nav-link circle" title="Editar Loja" data-id="@loja.Id" data-lojanome="@loja.Nome">
+                            <i class="fa-solid fa-pen btts"></i>
+                        </a>
+                    </div>
+                    <div class="ContainerButtons">
+                        <a class="nav-link circle" title="Excluir Loja" data-id="@loja.Id" data-lojanome="@loja.Nome">
+                             <i class="fa-solid fa-trash btts "></i>
+                        </a>
+                    </div>
                 
          
 
-            }
-            else
-            {
-                     <a class="nav-link btnClass openCreateProdutos" data-id="@loja.Id" data-lojanome="@loja.Nome">Criar Produtos</a>
-            }
+                }
+                else
+                {
+                         <a class="nav-link btnClass openCreateProdutos" data-id="@loja.Id" data-lojanome="@loja.Nome">Criar Produtos</a>
+                }
              
-        </div>
-    }
+            </div>
+        }
+    </div>
 </div>
 
 
@@ -229,7 +280,7 @@ input[type="text"], select {
        
                          
             <div class="modal-header">
-                   <h5 class="modal-title" id="CreateProdutosLabel">Criar Novo Produto para Loja</h5>
+                   <h5 class="modal-title" id="CreateProdutosLabel">Criar nova seção para loja: </h5>
             </div>
 
             <div class="modal-body">
@@ -266,35 +317,36 @@ input[type="text"], select {
                                 <option value="NovaSectionLojas">Adcionar outra seção</option>
                             </select>
 
-                      
-                  
-                            <div id="novaSecaoInput" class="input-container" style="display: none;margin-left: 20px;">
+                                                           
+                            <div id="novaSecaoInput" class="select-input-container input-container" style="display: none;margin-left: 20px;">
+                                      <label for="Newsection" class="file-input" style="top: -15px;">Nova Seção:</label>
                                 <input type="text" name="section" id="section" placeholder="Digite o nome da nova seção">
                             </div>
                         </div>
                     </div>
 
-                     <div class="file-input-wrapper form-group">   
-                       <div class="file-input-container input-container">
-                            <label for="nomeProduto" class="file-input">Nome Produto:</label>
+                     <div class="file-input-wrapper form-group" id="additionalFields">   
+
+                        <p class="NewProduto">Produto</p>
+
+                       <div class="file-input-container input-container remove-continer">
+                            <label for="nomeProduto" class="file-input">Nome:</label>
                             <input type="text" name="nomeProduto" id="nomeProduto" required>
-                       </div>
-                     </div>
-
-                     <div class="file-input-wrapper form-group">   
-                        <div class="file-input-container input-container">
-
-                            <label for="nomeDescricao" class="file-input">Descrição do Produto:</label>
+                       </div>   
+                       
+                        <div class="file-input-container input-container remove-continer" >
+                            <label for="nomeDescricao" class="file-input">Descrição:</label>
                             <input type="text" name="nomeDescricao" id="nomeDescricao" required>
                         </div>
 
-                        <div class="file-input-container input-container">
+                        <div class="file-input-container input-container remove-continer">
                             <label for="valor" class="file-input">Valor:</label>
                             <input type="text" name="valorInput" id="valor" required>
                         </div>
-                       </div>
 
-                    <button type="submit" class="formBtn">Criar novo Produto</button>
+                     </div>
+
+                    <button type="submit" class="formBtn">Criar</button>
                 </form>
             </div>
 
@@ -314,18 +366,19 @@ input[type="text"], select {
             $('#openCreateLojaModal').click(function () {
                 $('#createLojaModal').modal('show');
             });
+
                    
             $('.openCreateProdutos').click(function (e) {
             // Recupera o valor do data-id do botão clicado
             var lojaId = $(this).data('id');
-                  var lojaNome = $(this).data('lojanome');
+            var lojaNome = $(this).data('lojanome');
 
             // Atualiza o valor do campo oculto
             $('#LojaId').val(lojaId);
 
             // Atualiza o conteúdo do span no modal
             $('#CreateProdutos #lojaId').text(lojaId);
-            $('#CreateProdutosLabel').html('Criar Novo Produto para Loja: <strong>' + lojaNome + '</strong>');
+            $('#CreateProdutosLabel').html('Adicionar novo produto para loja: <strong>' + lojaNome + '</strong>');
 
 
             // Atualiza o valor do input com id "InputLojaId"

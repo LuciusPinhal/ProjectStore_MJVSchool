@@ -26,23 +26,42 @@
     padding: 1rem;
 }
 
-/* Estilize os rótulos e inputs do formulário */
-form label {
-    display: block;
-    margin-bottom: 0.5rem;
-}
+    .file-input-container {
+        flex: 1;
+        display:flex;
+        position: relative;
+        border: none;
+        padding: 0;
+    }
 
-form input {
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #495057;
-    background-color: #fff;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-}
+    .input-container {
+        width: 100%;
+    }
+    .container-space{
+        margin-bottom: 2rem;
+    }
+
+    .file-input {
+        position: absolute;
+        top: -16px;
+        left: 8px;
+        background-color: #fff;
+        padding: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        z-index: 1;
+    }
+
+    .formBtn {
+        display: flex;
+        margin: 0 auto;
+        margin-bottom: 2%;
+        width: 50%;
+        height: 50px;
+        font-weight: 700;
+        align-items: center;
+        justify-content: center;
+    }
 
 /* Estilize o botão de submit */
 form button {
@@ -72,17 +91,21 @@ form button:hover {
             <div class="modal-body">
 
                 <form asp-action="CreateLoja" asp-controller="loja" method="post">
+                    <div class="file-input-container input-container container-space">
+                        <label for="nome" class="file-input">Nome:</label>
+                        <input type="text" name="nome" id="nome" required>
+                    </div>
 
-                    <label for="nome">Nome:</label>
-                    <input type="text" name="nome" id="nome" required>
+                    <div class="file-input-container input-container container-space">
+                        <label for="nome" class="file-input">Cidade:</label>
+                        <input type="text" name="Cidade" id="Cidade" required>
+                    </div>
 
-                    <label for="nome">Cidade:</label>
-                    <input type="text" name="Cidade" id="Cidade" required>
-
-
-                     <button type="submit">Criar Loja</button>
+                     <button type="submit"  class="formBtn">Criar Loja</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
