@@ -205,6 +205,17 @@
         font-size: 14px;
         z-index: 1;
     }
+    .error-message {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #f44336;
+        color: white;
+        padding: 15px;
+        border-radius: 8px;
+        display: none;
+    }
 
 
 
@@ -267,11 +278,20 @@
             </div>
         }
     </div>
+
+    @*Error*@
+    @if (TempData["Erro"] != null)
+    {
+        <p id="errorMessage" class="error-message">@TempData["Erro"]</p>
+    }
+
 </div>
 
 
 
 <a class="nav-link btnClass" id="openCreateLojaModal">Criar Nova Loja</a>
+
+
 
 
 
@@ -284,6 +304,7 @@
 @section scripts {
     <script>
         $(document).ready(function () {
+
             $('#openCreateLojaModal').click(function () {
                 $('#createLojaModal').modal('show');
             });
@@ -329,6 +350,7 @@
                 $('#EditeProdutos').modal('show');
             });
 
+
             //Alterar Excluir
             $('.openDeleteLoja').click(function (e) {
                 // Recupera o valor do data-id do botão clicado
@@ -350,6 +372,10 @@
             });
   
         });
+
+        if ($('#errorMessage').text().trim() !== '') {
+            $('#errorMessage').fadeIn().delay(3000).fadeOut(); // Mostra a mensagem por 3 segundos
+        }
 
         function checkOption() {
             var select = document.getElementsByClassName("secao")[0];

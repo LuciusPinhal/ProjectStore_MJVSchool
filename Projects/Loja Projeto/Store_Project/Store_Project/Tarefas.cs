@@ -2,7 +2,7 @@
 //Editar loja - Alterar no banco de dados
 //deletar loja - Alterar no banco de dados
 
-//fazer verficações onde tem value se o usuario colocar string
+
 
 //Adcionar filtro E deixar o tiltulo no meio da tela
 //Filtro para filtrar nomes ou cidades
@@ -17,3 +17,7 @@
 //Perguntas para o prof
 
 //como fazer uma lista no formularo para enviar
+
+//Concluido
+
+//fazer verficações onde tem value se o usuario colocar string // como fazer para que ele exiba a mensagem no Modal - Melhoria

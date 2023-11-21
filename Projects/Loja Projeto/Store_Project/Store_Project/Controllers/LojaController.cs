@@ -12,7 +12,8 @@ namespace Store_Project.Controllers
     {
         // Propriedade estática para armazenar a lista de lojas
         private static List<Loja> lojas;
-    
+        string NomeVerficado = string.Empty;
+
         static LojaController()
         {
 
@@ -56,7 +57,7 @@ namespace Store_Project.Controllers
 
         public IActionResult Index()
         {
-            return View(lojas);
+           return View(lojas);    
         }
 
 
@@ -74,19 +75,7 @@ namespace Store_Project.Controllers
         [HttpPost]
         public IActionResult CreateLoja(string nome, string cidade)
         {
-            var verificaLoja = lojas.FirstOrDefault(n => n.Nome == nome);
-            string NomeVerficado = string.Empty;
-
-
-            if (verificaLoja == null)
-            {
-                NomeVerficado = nome;
-            }
-            else
-            {
-                int Qtd = lojas.Count(n => n == verificaLoja);
-                NomeVerficado = nome + " " + Qtd;
-            }
+            NomeVerficado = VerificaNome(nome);
 
             var loja = new Loja
             {
@@ -113,48 +102,82 @@ namespace Store_Project.Controllers
             {
                section = selectedSection;
             }
-
-            if (lojaEncontrada != null)
+            try
             {
-                if (lojaEncontrada.Sections == null)
-                {
-                    lojaEncontrada.Sections = new List<Section>();
-                }
 
-                var secaoEncontrada = lojaEncontrada.Sections.FirstOrDefault(s => s.Nome.ToUpper().Trim() == section.ToUpper().Trim());
-                //var idEncotrado = lojaEncontrada.Sections.FirstOrDefault(s => s.Id == section.Id);
-
-                if (secaoEncontrada == null)
+                if (lojaEncontrada != null)
                 {
-                    secaoEncontrada = new Section
+                    if (lojaEncontrada.Sections == null)
                     {
-                        Nome = section,
-                        Produtos = new List<Produto>()
-                    };
+                        lojaEncontrada.Sections = new List<Section>();
+                    }
+
+                    var secaoEncontrada = lojaEncontrada.Sections.FirstOrDefault(s => s.Nome.ToUpper().Trim() == section.ToUpper().Trim());
+                    //var idEncotrado = lojaEncontrada.Sections.FirstOrDefault(s => s.Id == section.Id);
+
+                    if (secaoEncontrada == null)
+                    {
+                        secaoEncontrada = new Section
+                        {
+                            Nome = section,
+                            Produtos = new List<Produto>()
+                        };
 
 
-                    int novaSecaoId = sql.CreateSecao(lojaEncontrada.Id, secaoEncontrada);           
-                    secaoEncontrada.Id = novaSecaoId;
-                    lojaEncontrada.Sections.Add(secaoEncontrada);
+                        int novaSecaoId = sql.CreateSecao(lojaEncontrada.Id, secaoEncontrada);
+                        secaoEncontrada.Id = novaSecaoId;
+                        lojaEncontrada.Sections.Add(secaoEncontrada);
+                    }
+                    if (double.TryParse(valorInput.Replace(',', '.'), NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out double valor))
+                    {
+                        var novoProduto = new Produto
+                        {
+                            Nome = nomeProduto,
+                            Descricao = nomeDescricao,
+                            Valor = double.Parse(valorInput.Replace(',', '.'), CultureInfo.InvariantCulture),
+                            Section_id = secaoEncontrada.Id
+                        };
+
+                        sql.CreateProduto(novoProduto);
+                        secaoEncontrada.Produtos.Add(novoProduto);
+                    }
+                    else
+                    {
+                        TempData["Erro"] = "Campo valor tem que ser um numero";
+
+                    }
+
+                    return RedirectToAction("Index", lojas);
+
                 }
-
-                var novoProduto = new Produto
-                {
-                    Nome = nomeProduto,
-                    Descricao = nomeDescricao,
-                    Valor = double.Parse(valorInput.Replace(',', '.'), CultureInfo.InvariantCulture),
-                    Section_id = secaoEncontrada.Id
-                };
-               
-
-                sql.CreateProduto(novoProduto);
-                secaoEncontrada.Produtos.Add(novoProduto);
-
-                return RedirectToAction("Index", lojas);
             }
 
-            return NotFound();
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro não esperado: {ex.Message}");
+                TempData["Erro"] = "Ocorreu um erro inesperado. Por favor, tente novamente.";
+            }
 
+        return NotFound();
+
+        }
+        
+        public IActionResult EditeLoja(string nome, string cidade)
+        {
+            NomeVerficado = VerificaNome(nome);
+
+            var loja = new Loja
+            {
+                Id = lojas.Count + 1,
+                Nome = NomeVerficado,
+                Cidade = cidade
+            };
+
+            lojas.Add(loja);
+            DALPostegres sql = new DALPostegres();
+            sql.CreateLoja(loja);
+
+            return RedirectToAction("Index", lojas);
         }
         public IActionResult DownloadProdutos(int id)
         {
@@ -187,6 +210,23 @@ namespace Store_Project.Controllers
 
             // Retorna a resposta de download
             return File(content, "text/plain", fileName);
+        }
+
+        public string VerificaNome(string nome)
+        {
+            var verificaLoja = lojas.FirstOrDefault(n => n.Nome == nome);
+          
+            if (verificaLoja == null)
+            {
+                NomeVerficado = nome;
+            }
+            else
+            {
+                int Qtd = lojas.Count(n => n == verificaLoja);
+                NomeVerficado = nome + " " + Qtd;
+            }
+
+            return NomeVerficado;
         }
     }
 
