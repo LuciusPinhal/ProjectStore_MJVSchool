@@ -76,17 +76,28 @@ namespace Store_Project.Controllers
         public IActionResult CreateLoja(string nome, string cidade)
         {
             NomeVerficado = VerificaNome(nome);
-
-            var loja = new Loja
+            try
             {
-                Id = lojas.Count + 1,
-                Nome = NomeVerficado,
-                Cidade = cidade
-            };
+                var loja = new Loja
+                {
+                    Id = lojas.Count + 1,
+                    Nome = NomeVerficado,
+                    Cidade = cidade
+                };
 
-            lojas.Add(loja);
-            DALPostegres sql = new DALPostegres();
-            sql.CreateLoja(loja);
+                TempData["Sucesso"] = "Loja criada com exito";
+
+                lojas.Add(loja);
+                DALPostegres sql = new DALPostegres();
+                sql.CreateLoja(loja);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro não esperado: {ex.Message}");
+                TempData["Erro"] = "Ocorreu um erro inesperado. Por favor, tente novamente.";
+            }
+
             return RedirectToAction("Index", lojas);
 
             //Tem dois mederos 1 tenho que ajustar a logica 
@@ -140,6 +151,7 @@ namespace Store_Project.Controllers
 
                         sql.CreateProduto(novoProduto);
                         secaoEncontrada.Produtos.Add(novoProduto);
+                        TempData["Sucesso"] = "Campos salvos com exito";
                     }
                     else
                     {
@@ -147,7 +159,7 @@ namespace Store_Project.Controllers
 
                     }
 
-                    return RedirectToAction("Index", lojas);
+                    return RedirectToAction("Index");
 
                 }
             }
@@ -158,24 +170,65 @@ namespace Store_Project.Controllers
                 TempData["Erro"] = "Ocorreu um erro inesperado. Por favor, tente novamente.";
             }
 
-        return NotFound();
+            return NotFound();
 
         }
-        
-        public IActionResult EditeLoja(string nome, string cidade)
+
+        public IActionResult EditeLoja(int EditeId, string nome, string cidade)
         {
             NomeVerficado = VerificaNome(nome);
 
-            var loja = new Loja
+            try
             {
-                Id = lojas.Count + 1,
-                Nome = NomeVerficado,
-                Cidade = cidade
-            };
+                Loja lojaEditada = lojas.FirstOrDefault(l => l.Id == EditeId);
+                if (lojaEditada != null)
+                {
+                    lojaEditada.Nome = NomeVerficado;
+                    lojaEditada.Cidade = cidade;
 
-            lojas.Add(loja);
-            DALPostegres sql = new DALPostegres();
-            sql.CreateLoja(loja);
+                    DALPostegres sql = new DALPostegres();
+                    sql.EditeLoja(lojaEditada);
+                    TempData["Sucesso"] = "Loja alterada com sucesso";
+                }
+                else
+                {
+                    TempData["Erro"] = "Loja não encontrada na lista.";
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro não esperado: {ex.Message}");
+                TempData["Erro"] = "Ocorreu um erro inesperado. Por favor, tente novamente.";
+            }
+
+            return RedirectToAction("Index", lojas);
+        }
+
+
+        public IActionResult DeleteLoja(int DeleteId)
+        {
+
+            try
+            {
+                Loja lojaEditada = lojas.FirstOrDefault(l => l.Id == DeleteId);
+                if (lojaEditada != null)
+                {
+                    lojas.Remove(lojaEditada);
+
+                    DALPostegres sql = new DALPostegres();
+                    sql.DeleteLoja(lojaEditada);
+                    TempData["Sucesso"] = "Loja deletada com sucesso";
+                }
+                else
+                {
+                    TempData["Erro"] = "Loja não encontrada na lista.";
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro não esperado: {ex.Message}");
+                TempData["Erro"] = "Ocorreu um erro inesperado. Por favor, tente novamente.";
+            }
 
             return RedirectToAction("Index", lojas);
         }

@@ -165,6 +165,51 @@ namespace Store_Project.DALPg
           
             return linhasAfetadas > 0;
         }
-    }
 
- }
+        public bool EditeLoja(Loja loja)
+        {
+            int linhasAfetadas = 0;
+            using (NpgsqlConnection conn = new NpgsqlConnection(strConnection))
+            {
+                conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(
+                    "UPDATE public.loja SET nome = @nome, cidade = @cidade WHERE id = @id", conn))
+                { 
+
+                    //fefinir parametros
+
+                    cmd.Parameters.AddWithValue("id", loja.Id);
+                    cmd.Parameters.AddWithValue("nome", loja.Nome);
+                    cmd.Parameters.AddWithValue("cidade", loja.Cidade);
+
+                    //quantas linhas foram afetadas
+
+                    linhasAfetadas = cmd.ExecuteNonQuery();
+                }
+                   
+            }
+
+            return linhasAfetadas > 0;
+        }
+
+        public bool DeleteLoja(Loja loja)
+        {
+            int linhasAfetadas = 0;
+            using (NpgsqlConnection conn = new NpgsqlConnection(strConnection))
+            {
+                conn.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(
+                    "DELETE FROM public.loja WHERE id = @id", conn))
+                {
+                    // Definir parâmetros
+                    cmd.Parameters.AddWithValue("id", loja.Id);
+
+                    // Quantas linhas foram afetadas
+                    linhasAfetadas = cmd.ExecuteNonQuery();
+                }
+            }
+
+            return linhasAfetadas > 0;
+        }
+    }     
+}

@@ -17,7 +17,7 @@
                             <label for="section" class="file-input">Seção:</label>
 
                             <select id="section" class="secao" onchange="checkOption()" name="selectedSection">
-
+                                <option selected disabled>Selecione a seção...</option>
                                 @{ 
                                     var secoesUnicas = new HashSet<string>();
                                     foreach (var loja in Model)
@@ -38,6 +38,7 @@
                                         }
                                     }
                                 }
+                               
                                 <option value="NovaSectionLojas">Adcionar outra seção</option>
                             </select>
 

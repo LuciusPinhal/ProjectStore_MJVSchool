@@ -64,24 +64,11 @@
     }
 
 /* Estilize o botão de submit */
-form button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 0.25rem;
-    margin:0 auto;
-}
 
-form button:hover {
-    background-color: #0056b3;
-}
 
  </style>
 <!-- Conteúdo do modal Criar Loja -->
-<div class="modal fade" id="EditeProdutos" tabindex="-1" role="dialog" aria-labelledby="createLojaModalLabel" aria-hidden="true">
+<div class="modal fade" id="EditeProdutos" tabindex="-1" role="dialog" aria-labelledby="EditeProdutosLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -91,7 +78,8 @@ form button:hover {
             <div class="modal-body">
 
                 <form asp-action="EditeLoja" asp-controller="loja" method="post">
-                    <input type="hidden" id="InputLojaId" name="LojaId" />
+                       <input type="hidden" id="InputLojaIdEdite" name="EditeId" />
+
                     <div class="file-input-container input-container container-space">
                         <label for="nome" class="file-input">Nome:</label>
                         <input type="text" name="nome" id="nome" required>

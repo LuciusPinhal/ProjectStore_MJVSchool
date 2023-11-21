@@ -6,11 +6,6 @@
 
 <style type="text/css">
 
-    strong
-    {
-        margin-left: 1rem;
-        font-size: 25px;
-    }
     .Containers {
         margin: 10px;
         padding: 10px;
@@ -33,7 +28,7 @@
         margin-bottom: 10px;
         background-color: #f8f9fa;
         padding: 15px;
-        border-radius: 8px;
+        border-radius: 10px;
         flex-wrap: wrap;
         align-content: center;
         align-items: center;
@@ -46,8 +41,8 @@
         justify-content: center;
    }
    #additionalFields{
-     border: 2px solid #ccc;
-    padding: 16px;
+        border: 2px solid #ccc;
+        padding: 16px;
    }
 
     .btnClass {
@@ -73,7 +68,7 @@
     .borders {
         background-color: #ebe8e8;
         padding: 15px;
-        border-radius: 8px;
+        border-radius: 10px;
     }
     #openCreateLojaModal {
         font-weight: bold;
@@ -88,8 +83,6 @@
         justify-content: center;
         align-items: center;
     }
-
-
     .circle {
         width: 3rem;
         height: 3rem;
@@ -207,13 +200,24 @@
     }
     .error-message {
         position: fixed;
-        top: 20px;
+        top: 5rem;
         left: 50%;
         transform: translateX(-50%);
         background-color: #f44336;
         color: white;
         padding: 15px;
-        border-radius: 8px;
+        border-radius: 10px;
+        display: none;
+    }
+    .sucesso-message {
+        position: fixed;
+        top: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #29c739;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
         display: none;
     }
 
@@ -279,10 +283,20 @@
         }
     </div>
 
-    @*Error*@
+    @*Mensagens*@
     @if (TempData["Erro"] != null)
     {
-        <p id="errorMessage" class="error-message">@TempData["Erro"]</p>
+        <p id="Message" class="error-message">
+            <i class="fa-regular fa-circle-xmark"  style="margin-right: 8px;"></i>
+            @TempData["Erro"]
+         </p>
+    }
+    @if (TempData["Sucesso"] != null)
+    {
+       <p id="Message" class="sucesso-message">
+           <i class="fa-regular fa-circle-check" style="margin-right: 8px;"></i>
+           @TempData["Sucesso"]
+       </p>
     }
 
 </div>
@@ -337,14 +351,14 @@
                 var lojaNome = $(this).data('lojanome');
 
                 // Atualiza o valor do campo oculto
-                $('#LojaId').val(lojaId);
+                $('#EditeId').val(lojaId);
 
                 // Atualiza o conteúdo do span no modal
-                $('#EditeProdutos #lojaId').text(lojaId);
+                $('#EditeProdutos #EditeId').text(lojaId);
                 $('#EditeProdutosLabel').html('Editar loja: <strong>' + lojaNome + '</strong>');
 
                 // Atualiza o valor do input com id "InputLojaId"
-                $('#InputLojaId').val(lojaId);
+                $('#InputLojaIdEdite').val(lojaId);
 
                 // Mostra o modal
                 $('#EditeProdutos').modal('show');
@@ -358,14 +372,14 @@
                 var lojaNome = $(this).data('lojanome');
 
                 // Atualiza o valor do campo oculto
-                $('#LojaId').val(lojaId);
+                $('#DeleteId').val(lojaId);
 
                 // Atualiza o conteúdo do span no modal
-                $('#DeleteProdutos #lojaId').text(lojaId);
-                $('#DeleteProdutosLabel').html('Editar loja: <strong>' + lojaNome + '</strong>');
+                $('#DeleteProdutos #DeleteId').text(lojaId);
+                $('#DeleteProdutosLabel').html('Deseja deletar a loja: <strong>' + lojaNome + '</strong>');
 
                 // Atualiza o valor do input com id "InputLojaId"
-                $('#InputLojaId').val(lojaId);
+                $('#InputLojaIdDelete').val(lojaId);
 
                 // Mostra o modal
                 $('#DeleteProdutos').modal('show');
@@ -373,8 +387,8 @@
   
         });
 
-        if ($('#errorMessage').text().trim() !== '') {
-            $('#errorMessage').fadeIn().delay(3000).fadeOut(); // Mostra a mensagem por 3 segundos
+        if ($('#Message').text().trim() !== '') {
+            $('#Message').fadeIn().delay(3000).fadeOut(); // Mostra a mensagem por 3 segundos
         }
 
         function checkOption() {
