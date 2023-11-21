@@ -143,7 +143,7 @@ namespace Store_Project.Controllers
                     }
                     else
                     {
-                        TempData["Erro"] = "Campo valor tem que ser um numero";
+                        TempData["Erro"] = "Campo 'VALOR' tem que ser um numero";
 
                     }
 
