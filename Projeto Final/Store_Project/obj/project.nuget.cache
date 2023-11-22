@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "EWxtLqt5dlosk4n+/owkV8KVxk5rnVGRMLuabbCZ8BjBVtRhFj0oU/OTqmELqh2JpBT55EQbPprhyeoTYX4Odw==",
+  "success": true,
+  "projectFilePath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\Projeto Final\\Store_Project\\Store_Project.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Pichau\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Pichau\\.nuget\\packages\\npgsql\\7.0.6\\npgsql.7.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}
