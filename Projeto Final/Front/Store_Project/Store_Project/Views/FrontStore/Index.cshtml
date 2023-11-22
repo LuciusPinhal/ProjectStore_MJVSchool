@@ -1,0 +1,410 @@
+﻿@model List<Loja>
+@{
+    ViewData["Title"] = "Lista das Loja";
+
+}
+
+<style type="text/css">
+
+    .Containers {
+        margin: 10px;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 5px #ccc;
+        position: relative;
+    }
+    .ContainerList{
+        max-height: 35vh;
+        overflow-y: auto;
+    }
+
+    .loja {
+        display: flex;
+        justify-content: space-around;
+        font-size: 105%;
+        font-weight: bold;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 10px;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
+    }
+
+   .loja p {
+        display: flex;
+        margin: 0;
+        width: 15%;
+        justify-content: center;
+   }
+   #additionalFields{
+        border: 2px solid #ccc;
+        padding: 16px;
+   }
+
+    .btnClass {
+        display: flex;
+        width: 40%;
+        text-decoration: none;
+        background-color: #0d6efd;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .btnClass:hover {
+        background-color: #e0e0e0;
+    }
+
+    .borders {
+        background-color: #ebe8e8;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    #openCreateLojaModal {
+        font-weight: bold;
+        justify-content: center;
+        width: 40%;
+        display: flex;
+        margin: 0 auto;
+    }
+    .ContainerButtons{
+         width: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .circle {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btts{
+       color:#d9d9d9;
+    }
+
+    .circle:hover {
+        background-color: #e0e0e0;
+    }
+
+    .btts:hover{
+        color:#0d6efd;
+    }
+    .modalSelecionado{
+        margin:0 auto;
+        margin-bottom: 2rem;
+    }
+
+
+   /* modal tamanho centro*/
+    #CreateProdutos .modal-dialog {
+        max-width: 200%;
+        width: 50%;
+    }
+
+    /*Estilo Modal?*/
+
+    .file-input {
+        position: absolute;
+        top: -16px;
+        left: 8px;
+        background-color: #fff;
+        padding: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        z-index: 1;
+    }
+
+    .file-input input[type="file"] {
+        width: 100%;
+    }
+
+    .file-input-container {
+        flex: 1;
+        display:flex;
+        position: relative;
+        border: 2px solid #ccc;
+        padding: 15px;
+  
+    }
+
+    .input-container {
+        width: 115%;
+
+    }
+
+    .file-input-wrapper {
+        display: flex;
+        width: 100%;
+    }
+
+    .form-group {
+        margin-bottom: 3rem;
+    }
+
+    input[type="text"], select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+        box-sizing: border-box;
+    }
+
+    .formBtn {
+        display: flex;
+        margin: 0 auto;
+        margin-bottom: 2%;
+        width: 50%;
+        height: 50px;
+        font-weight: 700;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+    .select-input-container  {
+        position: relative;
+        margin-right: 10px;
+    }
+
+    .remove-continer{
+        border:none;
+        padding: 0;
+    }
+    .NewProduto{
+        position: absolute;
+        margin-top: -37px;
+        left: 24px;
+        background-color: #fff;
+        padding: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        z-index: 1;
+    }
+    .error-message {
+        position: fixed;
+        top: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #f44336;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        display: none;
+    }
+    .sucesso-message {
+        position: fixed;
+        top: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #29c739;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        display: none;
+    }
+
+
+
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+<h1 style="margin-bottom: 2rem; text-align: center;">@ViewData["Title"]</h1>
+
+<div class="Containers">
+    <div class="loja borders">  
+        <p>Nome:</p>
+        <p>Cidade:</p>
+        <p>Ver Produtos</p>
+        <p>Adicionar Produto</p>
+        <p>Editar Loja</p>
+        <p>Excluir Loja</p>
+
+    </div>
+    <div class="ContainerList">
+        @foreach (var loja in Model)
+        {
+            <div class="loja">
+                <p>@loja.Nome</p>
+                <p>@loja.Cidade</p>
+ 
+                @if (@loja.Sections != null && @loja.Sections.Count > 0)
+                {
+              
+                    <div class="ContainerButtons">
+                        <a class="circle nav-link"  title="Visualizar Produtos" asp-controller="FrontStore" asp-action="Produtos" asp-route-id="@loja.Id">
+                            <i class="fas fa-eye btts"></i>
+                        </a>
+                    </div>
+
+                    <div class="ContainerButtons">
+                        <a class="nav-link circle openCreateProdutos"  title="Adcionar Seção e Produto" data-id="@loja.Id" data-lojanome="@loja.Nome">                   
+                            <i class="fa-solid fa-plus btts"></i>
+                        </a>
+                    </div>
+              
+                    <div class="ContainerButtons">    
+                        <a class="circle nav-link openEditeLoja" title="Editar Loja" data-id="@loja.Id" data-lojanome="@loja.Nome">              
+                            <i class="fa-solid fa-pen btts"></i>
+                        </a>
+                    </div>
+
+                    <div class="ContainerButtons">
+                        <a class="nav-link circle openDeleteLoja" title="Excluir Loja" data-id="@loja.Id" data-lojanome="@loja.Nome">
+                             <i class="fa-solid fa-trash btts "></i>
+                        </a>
+                    </div>
+                
+        
+                }
+                else
+                {
+                    <a class="nav-link btnClass openCreateProdutos" data-id="@loja.Id" data-lojanome="@loja.Nome">Criar Produtos</a>
+                }
+             
+            </div>
+        }
+    </div>
+
+    @*Mensagens*@
+    @if (TempData["Erro"] != null)
+    {
+        <p id="Message" class="error-message">
+            <i class="fa-regular fa-circle-xmark"  style="margin-right: 8px;"></i>
+            @TempData["Erro"]
+         </p>
+    }
+    @if (TempData["Sucesso"] != null)
+    {
+       <p id="Message" class="sucesso-message">
+           <i class="fa-regular fa-circle-check" style="margin-right: 8px;"></i>
+           @TempData["Sucesso"]
+       </p>
+    }
+
+</div>
+
+
+
+<a class="nav-link btnClass" id="openCreateLojaModal">Criar Nova Loja</a>
+
+
+
+
+
+@await Html.PartialAsync("CreateLojaModal")
+@await Html.PartialAsync("_CreateProdutosModal")
+@await Html.PartialAsync("_EditeLojaModal")
+@await Html.PartialAsync("_DeleteLojaModal")
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+
+            $('#openCreateLojaModal').click(function () {
+                $('#createLojaModal').modal('show');
+            });
+
+                   
+            $('.openCreateProdutos').click(function (e) {
+                // Recupera o valor do data-id do botão clicado
+                var lojaId = $(this).data('id');
+                var lojaNome = $(this).data('lojanome');
+
+                // Atualiza o valor do campo oculto
+                $('#LojaId').val(lojaId);
+
+                // Atualiza o conteúdo do span no modal
+                $('#CreateProdutos #lojaId').text(lojaId);
+                $('#CreateProdutosLabel').html('Adicionar novo produto para loja: <strong>' + lojaNome + '</strong>');
+
+
+                // Atualiza o valor do input com id "InputLojaId"
+                $('#InputLojaId').val(lojaId);
+
+                // Mostra o modal
+                $('#CreateProdutos').modal('show');
+            });
+
+            //Alterar Loja
+            $('.openEditeLoja').click(function (e) {
+                // Recupera o valor do data-id do botão clicado
+                var lojaId = $(this).data('id');
+                var lojaNome = $(this).data('lojanome');
+
+                // Atualiza o valor do campo oculto
+                $('#EditeId').val(lojaId);
+
+                // Atualiza o conteúdo do span no modal
+                $('#EditeProdutos #EditeId').text(lojaId);
+                $('#EditeProdutosLabel').html('Editar loja: <strong>' + lojaNome + '</strong>');
+
+                // Atualiza o valor do input com id "InputLojaId"
+                $('#InputLojaIdEdite').val(lojaId);
+
+                // Mostra o modal
+                $('#EditeProdutos').modal('show');
+            });
+
+
+            //Alterar Excluir
+            $('.openDeleteLoja').click(function (e) {
+                // Recupera o valor do data-id do botão clicado
+                var lojaId = $(this).data('id');
+                var lojaNome = $(this).data('lojanome');
+
+                // Atualiza o valor do campo oculto
+                $('#DeleteId').val(lojaId);
+
+                // Atualiza o conteúdo do span no modal
+                $('#DeleteProdutos #DeleteId').text(lojaId);
+                $('#DeleteProdutosLabel').html('Deseja deletar a loja: <strong>' + lojaNome + '</strong>');
+
+                // Atualiza o valor do input com id "InputLojaId"
+                $('#InputLojaIdDelete').val(lojaId);
+
+                // Mostra o modal
+                $('#DeleteProdutos').modal('show');
+            });
+  
+        });
+
+        if ($('#Message').text().trim() !== '') {
+            $('#Message').fadeIn().delay(3000).fadeOut(); // Mostra a mensagem por 3 segundos
+        }
+
+        function checkOption() {
+            var select = document.getElementsByClassName("secao")[0];
+            var novaSecaoInput = document.getElementById("novaSecaoInput");
+
+            if (select.value === "NovaSectionLojas") {
+                novaSecaoInput.style.display = "block";
+            } else {
+                novaSecaoInput.style.display = "none";
+            }
+        }
+         
+    </script>
+}
+
+
+
+

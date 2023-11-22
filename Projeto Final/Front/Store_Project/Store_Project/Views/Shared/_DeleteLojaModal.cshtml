@@ -1,0 +1,85 @@
+﻿<style type="text/css">
+
+
+.modal-description{
+    height: 200px;
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.group-btn{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 11px;
+}
+.form-btn{
+   margin: 5px;
+   width: 140px;
+}
+.formCancel{
+    background-color:#dc3545;  
+}
+.formAceppt{
+   background-color:#198754;
+}
+.formCancel:hover{
+    background-color:#dc3545;
+    opacity: 0.6;
+    transition: 1s; 
+   
+}
+.formAceppt:hover{
+    background-color:#198754;
+    opacity: 0.6;
+    transition: 1s; 
+}
+.modal-description{
+    font-size: 75px;
+}
+.modalContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+.info-modal
+{
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+
+ </style>
+<!-- Conteúdo do modal Criar Loja -->
+<div class="modal fade" id="DeleteProdutos" tabindex="-1" role="dialog" aria-labelledby="createLojaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          
+
+            <div class="modal-body">
+
+                <form asp-action="DeleteLoja" asp-controller="FrontStore" method="post">
+                    <input type="hidden" id="InputLojaIdDelete" name="DeleteId" />
+                        <div class="modal-description modalContainer">
+                            <div class="info-modal">
+                               <i class="fa-solid fa-circle-exclamation" style="color: #f5c723"></i>
+                            </div>
+                            <div>
+
+                            <h5 id="DeleteProdutosLabel">Criar nova seção para loja: </h5>
+                            </div>
+                        </div>
+                        <div class="group-btn">                          
+                             <button type="reset"  class="form-btn formBtn formCancel">Cancelar</button>
+                             <button type="submit"  class="form-btn formBtn formAceppt">Deletar Loja</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

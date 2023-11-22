@@ -1,0 +1,432 @@
+﻿@*@model List<Loja>
+@{
+    ViewData["Title"] = "Lista das Loja";
+
+}
+
+<style type="text/css">
+
+    strong
+    {
+        margin-left: 1rem;
+        font-size: 25px;
+    }
+    .Containers {
+        margin: 10px;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 5px #ccc;
+        position: relative;
+    }
+    .ContainerList{
+        max-height: 35vh;
+        overflow-y: auto;
+    }
+
+    .loja {
+        display: flex;
+        justify-content: space-around;
+        font-size: 105%;
+        font-weight: bold;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        flex-wrap: wrap;
+        align-content: center;
+        align-items: center;
+    }
+
+   .loja p {
+        display: flex;
+        margin: 0;
+        width: 15%;
+        justify-content: center;
+   }
+
+
+    .btnClass {
+        display: flex;
+        width: 40%;
+        text-decoration: none;
+        background-color: #0d6efd;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .btnClass:hover {
+        background-color: #e0e0e0;
+    }
+
+    .borders {
+        background-color: #ebe8e8;
+        padding: 15px;
+        border-radius: 8px;
+    }
+    #openCreateLojaModal {
+        font-weight: bold;
+        justify-content: center;
+        width: 40%;
+        display: flex;
+        margin: 0 auto;
+    }
+    .ContainerButtons{
+         width: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .circle {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        background-color: #0d6efd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+    }
+
+    .btts{
+       color:#d9d9d9;
+    }
+
+    .circle:hover {
+        background-color: #e0e0e0;
+    }
+
+    .btts:hover{
+        color:#0d6efd;
+    }
+    .modalSelecionado{
+        margin:0 auto;
+        margin-bottom: 2rem;
+    }
+
+
+   /* modal tamanho centro*/
+    #CreateProdutos .modal-dialog {
+        max-width: 200%;
+        width: 50%;
+    }
+
+    /*Estilo Modal?*/
+
+.file-input {
+    position: absolute;
+    top: -16px;
+    left: 8px;
+    background-color: #fff;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 1;
+}
+
+    .file-input input[type="file"] {
+        width: 100%;
+    }
+
+.file-input-container {
+    flex: 1;
+    display:flex;
+    position: relative;
+    border: 2px solid #ccc;
+    padding: 15px;
+    margin-right: 10px;
+}
+
+.input-container {
+    width: 115%;
+}
+
+.file-input-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+input[type="text"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.formBtn {
+    display: flex;
+    margin: 0 auto;
+    margin-bottom: 2%;
+    width: 50%;
+    height: 50px;
+    font-weight: 700;
+    align-items: center;
+    justify-content: center;
+}
+.modalbtts{
+      width: 3rem;
+}
+
+.select-input-container  {
+    position: relative;
+    margin-right: 10px;
+}
+
+.remove-continer{
+       border:none;
+    padding: 0;
+}
+
+
+
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+<h1 style="margin-bottom: 2rem; text-align: center;">@ViewData["Title"]</h1>
+
+<div class="Containers">
+    <div class="loja borders">  
+        <p>Nome:</p>
+        <p>Cidade:</p>
+        <p>Ver Produtos</p>
+        <p>Adcionar Seção</p>
+        <p>Editar Loja</p>
+        <p>Excluir Loja</p>
+
+    </div>
+    <div class="ContainerList">
+        @foreach (var loja in Model)
+        {
+                <div class="loja">
+                    <p>@loja.Nome</p>
+                    <p>@loja.Cidade</p>
+
+                @if (@loja.Sections != null && @loja.Sections.Count > 0)
+                {
+
+                            <div class="ContainerButtons">
+                                <a class="circle nav-link"  title="Visualizar Produtos" asp-controller="FrontStore" asp-action="Produtos" asp-route-id="@loja.Id">
+                                    <i class="fas fa-eye btts"></i>
+                                </a>
+                            </div>
+
+                            <div class="ContainerButtons">
+                                <a class="nav-link circle openCreateProdutos"  title="Adcionar Seção e Produto" data-id="@loja.Id" data-lojanome="@loja.Nome">                   
+                                    <i class="fa-solid fa-plus btts"></i>
+                                </a>
+                            </div>
+                            <div class="ContainerButtons">
+                                <a class="nav-link circle" title="Editar Loja" data-id="@loja.Id" data-lojanome="@loja.Nome">
+                                    <i class="fa-solid fa-pen btts"></i>
+                                </a>
+                            </div>
+                            <div class="ContainerButtons">
+                                <a class="nav-link circle" title="Excluir Loja" data-id="@loja.Id" data-lojanome="@loja.Nome">
+                                     <i class="fa-solid fa-trash btts "></i>
+                                </a>
+                            </div>
+
+
+
+                }
+                else
+                {
+                                 <a class="nav-link btnClass openCreateProdutos" data-id="@loja.Id" data-lojanome="@loja.Nome">Criar Produtos</a>
+                }
+
+                </div>
+        }
+    </div>
+</div>
+
+
+
+<a class="nav-link btnClass" id="openCreateLojaModal">Criar Nova Loja</a>
+
+
+<!-- Conteúdo do modal -->
+<div class="modal fade" id="CreateProdutos" tabindex="-1" role="dialog" aria-labelledby="CreateProdutosLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+                   <h5 class="modal-title" id="CreateProdutosLabel">Criar nova seção para loja: </h5>
+            </div>
+
+            <div class="modal-body">
+                <form id="createProdutosForm" asp-action="CreateProdutos" asp-controller="FrontStore" method="post">
+                    <input type="hidden" id="InputLojaId" name="LojaId" />
+
+                    <div class="file-input-wrapper form-group">   
+                        <div class="file-input-container input-container">
+                            <label for="section" class="file-input">Seção:</label>
+
+                            <select id="section" class="secao" onchange="checkOption()" name="selectedSection">
+
+
+                                @{ 
+                                    var secoesUnicas = new HashSet<string>();
+                                    foreach (var loja in Model)
+
+                                    {   
+                                        @if (loja.Sections != null)
+                                        {
+
+                                            @foreach (var Section in loja.Sections)
+                                            {
+
+                                                if (secoesUnicas.Add(Section.Nome))
+                                                {
+                                                                            <option value="@Section.Nome">@Section.Nome</option>
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                                <option value="NovaSectionLojas">Adcionar outra seção</option>
+                            </select>
+
+
+                            <div id="novaSecaoInput" class="select-input-container input-container" style="display: none;margin-left: 20px;">
+                                      <label for="Newsection" class="file-input" style="top: -15px;">Nova Seção:</label>
+                                <input type="text" name="section" id="section" placeholder="Digite o nome da nova seção">
+                            </div>
+                        </div>
+                    </div>
+
+                      <div class="ContainerButtons modalSelecionado">
+                                <a class="nav-link circle"  title="Adcionar novo Produto" id="toggleButton">                   
+                                    <i class="fa-solid fa-plus btts"></i>
+                                </a>
+                            </div>
+
+                     <div class="file-input-wrapper form-group" id="additionalFields" style="display: none;">   
+                       <div class="file-input-container input-container remove-continer">
+                            <label for="nomeProduto" class="file-input">Nome Produto:</label>
+                            <input type="text" name="nomeProduto" id="nomeProduto" required>
+                       </div>                                    
+                        <div class="file-input-container input-container remove-continer" >
+
+                            <label for="nomeDescricao" class="file-input">Descrição do Produto:</label>
+                            <input type="text" name="nomeDescricao" id="nomeDescricao" required>
+                        </div>
+
+                        <div class="file-input-container input-container remove-continer">
+                            <label for="valor" class="file-input">Valor:</label>
+                            <input type="text" name="valorInput" id="valor" required>
+                        </div>
+
+                     </div>
+
+                    <button type="submit" class="formBtn">Criar</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+@await Html.PartialAsync("CreateLojaModal")
+
+
+@section scripts {
+        <script>
+            $(document).ready(function () {
+                $('#openCreateLojaModal').click(function () {
+                    $('#createLojaModal').modal('show');
+                });
+
+            document.getElementById("toggleButton").addEventListener("click", function () {
+
+                var additionalFields = document.getElementById("additionalFields");
+
+                    if(additionalFields.style.display === "none"){
+
+                     additionalFields.style.display = "flex";
+                    }
+                    else{
+
+                        // Clonar os campos de produto e adicioná-los ao formulário
+                        var clonedFields = additionalFields.cloneNode(true);
+
+
+                        // Adicionar um botão "Excluir Loja" no final do bloco clonado
+                        var deleteButton = document.createElement("button");
+                        deleteButton.innerHTML = '<i class="fa-solid fa-trash btts"></i>';
+                        deleteButton.className = "deleteButton";
+                        deleteButton.addEventListener("click", function () {
+                            // Remover o bloco clonado ao clicar no botão "Excluir Loja"
+                            clonedFields.remove();
+                        });
+
+                        clonedFields.appendChild(deleteButton);
+                         // Encontrar o botão "Criar"
+                        var createButton = document.querySelector("#createProdutosForm .formBtn");
+
+                        // Inserir os campos clonados acima do botão "Criar"
+                        createButton.parentNode.insertBefore(clonedFields, createButton);
+                    }
+             });
+
+
+                $('.openCreateProdutos').click(function (e) {
+                // Recupera o valor do data-id do botão clicado
+                var lojaId = $(this).data('id');
+                var lojaNome = $(this).data('lojanome');
+
+                // Atualiza o valor do campo oculto
+                $('#LojaId').val(lojaId);
+
+                // Atualiza o conteúdo do span no modal
+                $('#CreateProdutos #lojaId').text(lojaId);
+                $('#CreateProdutosLabel').html('Criar Novo Produto para Loja: <strong>' + lojaNome + '</strong>');
+
+
+                // Atualiza o valor do input com id "InputLojaId"
+                $('#InputLojaId').val(lojaId);
+
+                // Mostra o modal
+                $('#CreateProdutos').modal('show');
+            });
+
+            });
+
+            function checkOption() {
+                var select = document.getElementsByClassName("secao")[0];
+                var novaSecaoInput = document.getElementById("novaSecaoInput");
+
+                if (select.value === "NovaSectionLojas") {
+                    novaSecaoInput.style.display = "block";
+                } else {
+                    novaSecaoInput.style.display = "none";
+                }
+            }
+
+        </script>
+}
+
+
+
+
+*@
