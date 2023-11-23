@@ -8,10 +8,12 @@ namespace Store_Project.DALPg
     {
         private NpgsqlConnection connection;
 
+        private readonly IConfiguration _configuration;
 
-        public DALPostegres()
+        public DALPostegres(IConfiguration configuration)
         {
-            string strConnection = "Server=127.0.0.1;Port=5432;Database=Projeto MJV;User Id = postgres; Password = ovo12345";
+            _configuration = configuration;
+            string strConnection = _configuration.GetConnectionString("conexao_com_banco_postegres");
             connection = new NpgsqlConnection(strConnection);
         }
 
@@ -149,7 +151,6 @@ namespace Store_Project.DALPg
                 }
             }
         }
-
 
         public Loja GetLojaById(int lojaId)
         {

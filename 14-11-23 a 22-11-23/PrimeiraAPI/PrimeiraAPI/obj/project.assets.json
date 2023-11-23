@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\16-11-23\\PrimeiraAPI\\PrimeiraAPI\\PrimeiraAPI.csproj",
+      "projectUniqueName": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\14-11-23 a 22-11-23\\PrimeiraAPI\\PrimeiraAPI\\PrimeiraAPI.csproj",
       "projectName": "PrimeiraAPI",
-      "projectPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\16-11-23\\PrimeiraAPI\\PrimeiraAPI\\PrimeiraAPI.csproj",
+      "projectPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\14-11-23 a 22-11-23\\PrimeiraAPI\\PrimeiraAPI\\PrimeiraAPI.csproj",
       "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
-      "outputPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\16-11-23\\PrimeiraAPI\\PrimeiraAPI\\obj\\",
+      "outputPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\14-11-23 a 22-11-23\\PrimeiraAPI\\PrimeiraAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

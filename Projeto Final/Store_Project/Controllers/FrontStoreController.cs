@@ -126,7 +126,7 @@ namespace Store_Project.Controllers
 
                     var client = _httpClientFactory.CreateClient("Store");
 
-                    HttpResponseMessage response = await client.PostAsJsonAsync("/Loja/SectionAndProduto/Post", CreateLojaMin);
+                    HttpResponseMessage response = await client.PostAsJsonAsync("/Section/Post", CreateLojaMin);
                     string mensagem = await response.Content.ReadAsStringAsync();
 
                     mensagem = mensagem.Trim('"');
@@ -292,6 +292,12 @@ namespace Store_Project.Controllers
 
                 return NomeVerficado;
             }
+
+        public IActionResult message()
+        {
+            TempData["Erro"] = "Crie Produtos para visualiza-los";
+            return RedirectToAction("Index");
+        }
     }
 
 }

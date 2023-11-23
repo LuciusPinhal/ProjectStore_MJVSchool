@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\16-11-23\\PrimeiraAPI\\FrontEnd\\FrontEnd.csproj": {}
+    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\14-11-23 a 22-11-23\\PrimeiraAPI\\FrontEnd\\FrontEnd.csproj": {}
   },
   "projects": {
-    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\16-11-23\\PrimeiraAPI\\FrontEnd\\FrontEnd.csproj": {
+    "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\14-11-23 a 22-11-23\\PrimeiraAPI\\FrontEnd\\FrontEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\16-11-23\\PrimeiraAPI\\FrontEnd\\FrontEnd.csproj",
+        "projectUniqueName": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\14-11-23 a 22-11-23\\PrimeiraAPI\\FrontEnd\\FrontEnd.csproj",
         "projectName": "FrontEnd",
-        "projectPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\16-11-23\\PrimeiraAPI\\FrontEnd\\FrontEnd.csproj",
+        "projectPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\14-11-23 a 22-11-23\\PrimeiraAPI\\FrontEnd\\FrontEnd.csproj",
         "packagesPath": "C:\\Users\\Pichau\\.nuget\\packages\\",
-        "outputPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\16-11-23\\PrimeiraAPI\\FrontEnd\\obj\\",
+        "outputPath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\14-11-23 a 22-11-23\\PrimeiraAPI\\FrontEnd\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

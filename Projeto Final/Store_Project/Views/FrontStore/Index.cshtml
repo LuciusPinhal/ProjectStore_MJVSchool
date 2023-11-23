@@ -40,16 +40,21 @@
         width: 15%;
         justify-content: center;
    }
-   #additionalFields{
-        border: 2px solid #ccc;
+/*   #additionalFields{
         padding: 16px;
+        display: none;
+        margin-left: 20px;
+   }*/
+   .modal-label{
+       top: 0px;
+       left: 22px;
    }
 
     .btnClass {
         display: flex;
         width: 40%;
         text-decoration: none;
-        background-color: #0d6efd;
+        background-color: #5398FF;
         color: #fff;
         padding: 10px 20px;
         font-size: 16px;
@@ -73,7 +78,7 @@
     #openCreateLojaModal {
         font-weight: bold;
         justify-content: center;
-        width: 40%;
+        width: 20%;
         display: flex;
         margin: 0 auto;
     }
@@ -87,7 +92,7 @@
         width: 3rem;
         height: 3rem;
         border-radius: 50%;
-        background-color: #0d6efd;
+        background-color: #5398FF;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -104,7 +109,8 @@
     }
 
     .btts:hover{
-        color:#0d6efd;
+        opacity:0.6;
+
     }
     .modalSelecionado{
         margin:0 auto;
@@ -114,19 +120,19 @@
 
    /* modal tamanho centro*/
     #CreateProdutos .modal-dialog {
-        max-width: 200%;
-        width: 50%;
+        max-width: 900px;
+        width: 90vh;
     }
 
     /*Estilo Modal?*/
 
     .file-input {
         position: absolute;
-        top: -16px;
+        top: -17px;
         left: 8px;
         background-color: #fff;
         padding: 5px;
-        font-weight: bold;
+        font-weight: 400;
         font-size: 14px;
         z-index: 1;
     }
@@ -155,7 +161,7 @@
     }
 
     .form-group {
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
 
     input[type="text"], select {
@@ -165,17 +171,6 @@
         border-radius: 4px;
         margin-right: 10px;
         box-sizing: border-box;
-    }
-
-    .formBtn {
-        display: flex;
-        margin: 0 auto;
-        margin-bottom: 2%;
-        width: 50%;
-        height: 50px;
-        font-weight: 700;
-        align-items: center;
-        justify-content: center;
     }
 
 
@@ -221,6 +216,39 @@
         display: none;
     }
 
+    .modalbtn{
+        margin-top: 16px;
+        margin-bottom: 16px;
+        width: 32%;
+        height: 50px;
+    }
+
+    .formBtn {
+        background-color: #5398FF;
+        display: flex;
+        margin: 0 auto;
+        margin-bottom: 2%;
+        color: #fff;
+        width: 32%;
+        height: 3rem;
+        font-weight: 700;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        border: none;
+    }
+    .formBtn:hover {
+        opacity: 0.8;
+        transition: 1s;
+    }
+    .Btts-disabled
+    {
+        background-color: #ebe8e8;
+    }
+    .Btts-disabled-icon{
+        color: #ccc;
+    }
+
 
 
 </style>
@@ -233,7 +261,7 @@
         <p>Nome:</p>
         <p>Cidade:</p>
         <p>Ver Produtos</p>
-        <p>Adicionar Produto</p>
+        <p>Criar Produto</p>
         <p>Editar Loja</p>
         <p>Excluir Loja</p>
 
@@ -276,7 +304,30 @@
                 }
                 else
                 {
-                    <a class="nav-link btnClass openCreateProdutos" data-id="@loja.Id" data-lojanome="@loja.Nome">Criar Produtos</a>
+                <div class="ContainerButtons">
+                    <a class="circle nav-link Btts-disabled"  title="Crie Produtos para visualiza-los" asp-controller="FrontStore" asp-action="Message">
+                        <i class="fas fa-eye Btts-disabled-icon"></i>
+                    </a>
+                </div>
+
+                <div class="ContainerButtons">
+                    <a class="nav-link circle openCreateProdutos"  id="Info-teste" title="Criar Produtos" data-id="@loja.Id" data-lojanome="@loja.Nome">                                 
+                        <i class="fa-solid fa-plus btts"></i>
+                    </a>
+                </div>
+
+                <div class="ContainerButtons">    
+                    <a class="circle nav-link openEditeLoja" title="Editar Loja" data-id="@loja.Id" data-lojanome="@loja.Nome">              
+                        <i class="fa-solid fa-pen btts"></i>
+                    </a>
+                </div>
+
+                <div class="ContainerButtons">
+                    <a class="nav-link circle openDeleteLoja" title="Excluir Loja" data-id="@loja.Id" data-lojanome="@loja.Nome">
+                            <i class="fa-solid fa-trash btts "></i>
+                    </a>
+                </div>
+                    
                 }
              
             </div>
@@ -334,7 +385,7 @@
 
                 // Atualiza o conteúdo do span no modal
                 $('#CreateProdutos #lojaId').text(lojaId);
-                $('#CreateProdutosLabel').html('Adicionar novo produto para loja: <strong>' + lojaNome + '</strong>');
+                $('#CreateProdutosLabel').html('Adicionar Novo Produto na loja: <strong>' + lojaNome + '</strong>');
 
 
                 // Atualiza o valor do input com id "InputLojaId"
@@ -388,7 +439,29 @@
         });
 
         if ($('#Message').text().trim() !== '') {
-            $('#Message').fadeIn().delay(3000).fadeOut(); // Mostra a mensagem por 3 segundos
+            $('#Info-teste').css('background-color', '#0d6efd');
+                
+            fazerPulsar();
+            
+            $('#Message').fadeIn().delay(3000).fadeOut(function() {
+                
+                $('#Info-teste').stop(true, true);
+
+            });
+        }
+
+        function fazerPulsar() {
+            $('#Info-teste').animate({
+                opacity: 0.5,
+            }, 500, 'linear', function() {
+                $('#Info-teste').animate({
+                    opacity: 1,
+                }, 500, 'linear');
+            });
+
+            setTimeout(function() {
+               $('#Info-teste').css('background-color', '#5398FF');
+            }, 1000);
         }
 
         function checkOption() {

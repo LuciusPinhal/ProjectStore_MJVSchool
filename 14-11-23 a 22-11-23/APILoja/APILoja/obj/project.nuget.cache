@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Jl8fGxgVCdERENjZwGW5mS8ro8H96Bzet2MDu6lDUxfWZ8FODFKGtSAMMGqCmsnxOBXZNhNIRqML1G76qGMgfA==",
+  "dgSpecHash": "WOJyw+tCwLs59i+ZXObV0QLZ84+lCzxzXf8O2p3mv1n3XLetidt0rwmtamEIadKfmxSFEDMXrCdBkKhK+MbNdw==",
   "success": true,
-  "projectFilePath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\16-11-23\\APILoja\\APILoja\\APILoja.csproj",
+  "projectFilePath": "C:\\Lubilus2\\Program\\Programação\\Aulas C#\\Git MJV\\14-11-23 a 22-11-23\\APILoja\\APILoja\\APILoja.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pichau\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.12\\microsoft.aspnetcore.openapi.7.0.12.nupkg.sha512",
     "C:\\Users\\Pichau\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
