@@ -116,6 +116,7 @@ namespace Store_Project.DALPg
             }
         }
 
+
         public int GetUltimoIdLoja()
         {
             try
@@ -401,6 +402,41 @@ namespace Store_Project.DALPg
 
         }
 
+        public bool EditeSection(int sectionId, string newName)
+        {
+            int linhasAfetadas = 0;
+
+            try
+            {
+                connection.Open();
+
+                using (NpgsqlCommand cmd = new NpgsqlCommand(
+                    "UPDATE public.section SET nome = @nome WHERE id = @id", connection))
+                {
+                    // Definir parâmetros
+                    cmd.Parameters.AddWithValue("id", sectionId);
+                    cmd.Parameters.AddWithValue("nome", newName);
+
+                    // Quantas linhas foram afetadas
+                    linhasAfetadas = cmd.ExecuteNonQuery();
+                }
+
+                return linhasAfetadas > 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro na edição da seção: {ex.Message}");
+                // Trate o erro adequadamente ou lance uma exceção se necessário
+                return false;
+            }
+            finally
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+        }
         public bool DeleteLoja(int DeleteId)
         {
             int linhasAfetadas = 0;
@@ -434,6 +470,40 @@ namespace Store_Project.DALPg
 
         }
 
+
+        public bool DeleteSection(int DeleteId)
+        {
+            int linhasAfetadas = 0;
+            try
+            {
+                connection.Open();
+                using (NpgsqlCommand cmd = new NpgsqlCommand(
+                    "DELETE FROM public.section WHERE id = @id", connection))
+                {
+                    // Definir parâmetros
+                    cmd.Parameters.AddWithValue("id", DeleteId);
+
+                    // Quantas linhas foram afetadas
+                    linhasAfetadas = cmd.ExecuteNonQuery();
+                }
+                return linhasAfetadas > 0;
+            }
+
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            finally
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+
+        }
+      
         public void Dispose()
         {
             if (connection != null)

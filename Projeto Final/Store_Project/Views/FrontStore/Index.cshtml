@@ -33,6 +33,9 @@
         align-content: center;
         align-items: center;
     }
+    .tableinfo{
+       font-weight: normal;
+    }
 
    .loja p {
         display: flex;
@@ -254,7 +257,7 @@
 </style>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-<h1 style="margin-bottom: 2rem; text-align: center;">@ViewData["Title"]</h1>
+<h1 style="margin-bottom: 2rem; text-align: center; margin-top: 3rem;">@ViewData["Title"]</h1>
 
 <div class="Containers">
     <div class="loja borders">  
@@ -269,7 +272,7 @@
     <div class="ContainerList">
         @foreach (var loja in Model)
         {
-            <div class="loja">
+            <div class="loja tableinfo">
                 <p>@loja.Nome</p>
                 <p>@loja.Cidade</p>
  
@@ -369,6 +372,7 @@
 @section scripts {
     <script>
         $(document).ready(function () {
+
 
             $('#openCreateLojaModal').click(function () {
                 $('#createLojaModal').modal('show');
@@ -474,6 +478,13 @@
                 novaSecaoInput.style.display = "none";
             }
         }
+
+               $('#fechar').click(function () {
+                // Adicione qualquer lógica personalizada aqui
+
+                // Fecha o modal
+                $('#DeleteSection').modal('hide');
+            });
          
     </script>
 }

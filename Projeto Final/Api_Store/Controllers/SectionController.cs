@@ -4,6 +4,7 @@ using Microsoft.Extensions.Primitives;
 using Store_Project.DALPg;
 using System.Globalization;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 
 namespace Store_Project.Controllers
@@ -20,6 +21,22 @@ namespace Store_Project.Controllers
         {
             _sql = sql;
             _logger = logger;
+        }
+        [HttpGet]
+        [Route("Get")]
+        public IEnumerable<Loja> Get()
+        {
+            try
+            {
+                var lojas = _sql.ListLojaDB();
+                return lojas;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Erro ao obter a lista de lojas: {ex.Message}");
+                return null;
+            }
+
         }
 
         [HttpPost]
@@ -62,11 +79,11 @@ namespace Store_Project.Controllers
 
                         // Adicionar a nova seção à lista de seções da loja
                         lojaEncontrada.Sections.Add(secaoEncontrada);
+
+                        secaoEncontrada.Id = _sql.CreateSecao(lojaEncontrada.Id, secaoEncontrada);
                     }
+
                     var Produtos = request.Sections[0].Produtos[0];
-
-
-                    secaoEncontrada.Id = _sql.CreateSecao(lojaEncontrada.Id, secaoEncontrada);
 
                     var novoProduto = new Produto
                     {
@@ -97,6 +114,77 @@ namespace Store_Project.Controllers
             return NotFound();
         }
 
+        [HttpPut("Put")]
+        public IActionResult EditLoja([FromBody] Loja model)
+        {
+            try
+            {
+         
+                Loja lojaEditada = _sql.GetLojaById(model.Id);
+
+                if (lojaEditada != null)
+                {
+  
+                    if (model.Sections != null && model.Sections.Count > 0)
+                    {
+
+                        var novaSecao = model.Sections[0];
+
+
+                        var secaoExistente = lojaEditada.Sections.FirstOrDefault(s => s.Id == novaSecao.Id);
+
+                        if (secaoExistente != null)
+                        {
+
+                            secaoExistente.Nome = novaSecao.Nome;
+
+     
+                            _sql.EditeSection(secaoExistente.Id, secaoExistente.Nome);
+
+                            return Ok("seção alterada com sucesso");
+                        }
+                        else
+                        {
+                            return NotFound("Seção não encontrada");
+                        }
+                    }
+                    else
+                    {
+                        return BadRequest("A seção não possui seções");
+                    }
+                }
+                else
+                {
+                    return NotFound("seção não encontrada");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro não esperado: {ex.Message}");
+                return StatusCode(500, "Erro interno do servidor");
+            }
+        }
+
+
+
+        [HttpDelete("Delete/{DeleteId}")]
+        public IActionResult DeleteLoja(int DeleteId)
+        {
+            try
+            {
+                _sql.DeleteSection(DeleteId);
+
+                return Ok("Seção excluída com sucesso");
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro não esperado: {ex.Message}");
+                // Trate o erro adequadamente e retorne um status de erro
+                return StatusCode(500, "Erro interno do servidor");
+            }
+
+        }
     }
 }
 

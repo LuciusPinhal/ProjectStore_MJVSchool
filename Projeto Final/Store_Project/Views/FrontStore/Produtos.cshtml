@@ -5,15 +5,14 @@
 }
 
 <style type="text/css">
-    main{
-       width: 100%;
-    }
-  .container {
-    width:100%;
+
+  .container-section {
+    width: 100%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 24px 0 32px 0;
+
+    justify-content: flex-start;
   }
 
   .titulo-produtos {
@@ -22,13 +21,17 @@
   }
 
   .botao-lojas {
+    display: flex;
+    justify-content: center;
     text-decoration: none;
-    background-color: #5398FF;
-    color: #fff;
+    width: 200px;
+    background-color: #fff;
+    color: #5398FF;
     padding: 10px 20px;
     font-size: 16px;
-    border: none;
+    border: 2px solid #5398FF;
     cursor: pointer;
+    margin-right:20px;
     border-radius: 10px;
   }
 
@@ -36,61 +39,316 @@
     color: #fff;
     background-color: #0056b3;
   }
+     /* modal tamanho centro*/
+    #CreateProdutos .modal-dialog {
+        max-width: 900px;
+        width: 90vh;
+    }
+
+    /*Estilo Modal?*/
+
+    .file-input {
+        position: absolute;
+        top: -17px;
+        left: 8px;
+        background-color: #fff;
+        padding: 5px;
+        font-weight: 400;
+        font-size: 14px;
+        z-index: 1;
+    }
+
+    .file-input input[type="file"] {
+        width: 100%;
+    }
+
+    .file-input-container {
+        flex: 1;
+        display:flex;
+        position: relative;
+        border: 2px solid #ccc;
+        padding: 15px;
+
+    }
+
+    .input-container {
+        width: 115%;
+
+    }
+
+    .file-input-wrapper {
+        display: flex;
+        width: 100%;
+    }
+
+    .form-group {
+        margin: 1rem 10px 3rem 10px;
+    }
+
+    input[type="text"], select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-right: 10px;
+        box-sizing: border-box;
+    }
+
+
+    .select-input-container  {
+        position: relative;
+        margin-right: 10px;
+    }
+
+    .remove-continer{
+        border:none;
+        padding: 0;
+    }
+    .NewProduto{
+        position: absolute;
+        margin-top: -37px;
+        left: 24px;
+        background-color: #fff;
+        padding: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        z-index: 1;
+    }
+    .error-message {
+        position: fixed;
+        top: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #f44336;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        display: none;
+    }
+    .sucesso-message {
+        position: fixed;
+        top: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #29c739;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        display: none;
+    }
+
+    .modalbtn{
+        margin-top: 16px;
+        margin-bottom: 16px;
+        width: 32%;
+        height: 50px;
+    }
+
+    .formBtn {
+        background-color: #5398FF;
+        display: flex;
+        margin: 0 auto;
+        margin-bottom: 2%;
+        color: #fff;
+        width: 32%;
+        height: 3rem;
+        font-weight: 700;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        border: none;
+    }
+    .formBtn:hover {
+        opacity: 0.8;
+        transition: 1s;
+    }
+    .Btts-disabled
+    {
+        background-color: #ebe8e8;
+    }
+    .Btts-disabled-icon{
+        color: #ccc;
+    }
+    .modal-content{
+        left: -24px;
+        width:35rem !important;
+    }
+
+    .titleForm{
+        margin-top: 3rem;
+        display: flex;
+        align-content: center;
+        align-items: center;
+    }
+
+    .iconArrow{
+        font-size: 30px;
+        margin-right: 22px;  
+        color:#5398FF;
+    }
+    .iconArrow:hover{
+        color: #0d6efd;
+    }
+    .error-message {
+        position: fixed;
+        top: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #f44336;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        display: none;
+    }
+    .sucesso-message {
+        position: fixed;
+        top: 5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #29c739;
+        color: white;
+        padding: 15px;
+        border-radius: 10px;
+        display: none;
+    }
 
 </style>
 
-<div class="container">
-  <h1 class="titulo-produtos">Descubra Nossos Incríveis Produtos</h1>
-  <a class="botao-lojas" asp-controller="FrontStore" asp-action="Index">Explorar as Lojas</a>
-  <a class="botao-lojas" href="@Url.Action("DownloadProdutos", new { id = Model.First().Id })">Download Produtos</a>
-</div>
-
-@foreach (var loja in Model)
+@*Mensagens*@
+@if (TempData["Erro"] != null)
 {
-       <h1>@loja.Nome</h1>
-           <partial name="_Produtos" model="@loja.Sections"/>
+            <p id="Message" class="error-message">
+                <i class="fa-regular fa-circle-xmark"  style="margin-right: 8px;"></i>
+        @TempData["Erro"]
+             </p>
+}
+@if (TempData["Sucesso"] != null)
+{
+           <p id="Message" class="sucesso-message">
+               <i class="fa-regular fa-circle-check" style="margin-right: 8px;"></i>
+        @TempData["Sucesso"]
+           </p>
 }
 
 
-@*//_Produtos*@
-<div class="modal fade" id="CreateProdutos" tabindex="-1" role="dialog" aria-labelledby="CreateProdutosLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="CreateProdutosLabel">Criar Novo Produto para Loja</h5>
-            </div>
+@foreach (var loja in Model)
+{
+         <div class="titleForm">
+             <a  class="iconArrow"  title="Voltar para lista de lojas" asp-controller="FrontStore" asp-action="Index">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
 
-            <div class="modal-body">
-                <form id="createProdutosForm" asp-action="CreateProdutos" asp-controller="FrontStore" method="post">
-                    <input type="hidden" id="InputLojaId" name="LojaId" />
+            <h1>@loja.Nome</h1>
+         </div>
+         <div class="container-section">
 
-                    <label for="section">Seção:</label>
-                    <input type="text" name="section" id="section" required>
+              <a class="botao-lojas openCreateProdutos" title="Adcionar Seção e Produto">Criar nova Seção</a>
 
-                    <label for="nomeProduto">Nome Produto:</label>
-                    <input type="text" name="nomeProduto" id="nomeProduto" required>
+              <a class="botao-lojas" href="@Url.Action("DownloadProdutos", new { id = Model.First().Id })">Download Produtos</a>
 
-                     <label for="nomeDescricao">Descrição do Produto:</label>
-                     <input type="text" name="nomeDescricao" id="nomeDescricao" required>
+         </div>
+         <div class="tableBodererd">
+            <partial name="_Produtos" model="@loja.Sections"/>
+         </div>
+}
 
-                     <label for="valor">Valor:</label>
-                     <input type="text" name="valorInput" id="valor" required>
-
-                    <button type="submit">Criar Produto</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+@await Html.PartialAsync("_CreateProdutosModal")
+@await Html.PartialAsync("_CreateSection")
+@await Html.PartialAsync("_EditeSectionModal")
+@await Html.PartialAsync("_DeleteSectionModal")
 
 
 @section scripts {
-        <script>     
-            $('.openCreateLojaModal').click(function () {
-            console.log("Teste");
+        <script>
+             $('.openCreateProdutos').click(function (e) {
 
-             $('#CreateProdutos').modal('show');
+                var productId = @Model.FirstOrDefault().Id;
+                var redirecionamento = "Redirecionamento";
+
+                $('#InputRedirecionamento').val(redirecionamento);
+                $('#CreateProdutos #lojaRedirecionamento').val(redirecionamento);
+  
+     
+                $('#InputLojaId').val(productId);
+                $('#CreateProdutos #lojaId').val(productId);
+               
+                $('#CreateProdutos').modal('show');
+            });
+
+            $('.openCreateSection').click(function () {
+                var productId = @Model.FirstOrDefault().Id;
+
+                var SectionId = $(this).data('id');
+              
+                $('#InputLojaId').val(productId);
+                $('#CreateSection #productId').val(productId);  
+
+                $('#InputSectionId').val(SectionId);
+                $('#CreateSection #SectionId').val(SectionId);  
+            
+                
+                 $('#CreateSection').modal('show');
+          
+            });
+       
+            //edite
+            $('.openEditeSection').click(function () {
+                var LojaId = @Model.FirstOrDefault().Id;
+
+                var SectionId = $(this).data('id');
+
+                 var SectionName = $(this).data('section-nome');
+
+                $('#LojaIdInput').val(LojaId);
+                $('#EditeNameSection #LojaId').val(LojaId);
+
+                $('#SectionIdInput').val(SectionId);
+                $('#EditeNameSection #SectionId').val(SectionId);
+
+                $('#nome').val(SectionName);
+                $('#EditeNameSection #SectionName').val(SectionName);
+
+                 $('#EditeNameSection').modal('show');
 
             });
-        </script>
+
+            function selecionarTexto() {
+                var campoNome = document.getElementById('nome');
+                campoNome.select();
+            }
+
+                //delete
+            $('.openDeleteSection').click(function () {
+
+                var LojaId = @Model.FirstOrDefault().Id;
+
+                $('#LojaIdInput').val(LojaId);
+                $('#EditeNameSection #LojaId').val(LojaId);
+
+                var SectionId = $(this).data('id');
+
+                $('#InputSectionIdDelete').val(SectionId);
+                $('#openDeleteSection #SectionId').val(SectionId);
+
+                $('#DeleteSection').modal('show');
+
+            });
+
+            $('#fechar').click(function () {
+                $('#EditeNameSection').modal('hide');
+            });
+
+                    function checkOption() {
+                var select = document.getElementsByClassName("secao")[0];
+                var novaSecaoInput = document.getElementById("novaSecaoInput");
+
+                if (select.value === "NovaSectionLojas") {
+                    novaSecaoInput.style.display = "block";
+                } else {
+                    novaSecaoInput.style.display = "none";
+                }
+            }
+
+            
+      </script>
 }

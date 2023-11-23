@@ -36,7 +36,7 @@
 
 
 
-    .modal-content {
+   .modal-content {
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
@@ -98,6 +98,19 @@ form input{
 .formBtn:hover {
     background-color: #0056b3;
 }
+.modal-btts-action{
+    display: flex;
+    justify-content: flex-start;
+  
+
+}
+.titleTH{
+    padding: 0;
+    border: none;
+    background-color: #fff;
+}.nav-link{
+    color: #5398FF
+}
 </style>
 
 <table>  
@@ -105,15 +118,20 @@ form input{
     {
         <thead>
             <tr>
-                <th colspan="2">@sections.Nome</th>
-                <th>
-                    <a class="openCreateLojaModal">
-                        <i class="fa-solid fa-pen btts"></i>
-                    </a>
+                <th colspan="3" class="titleTH">                           
+                    <div class="modal-btts-action">
+                        <h4>
+                            @sections.Nome
+                        </h4>
+
+                        <a class="nav-link circle openEditeSection" id="Info-teste" title="Editar Seção" data-id="@sections.Id" data-section-nome="@sections.Nome">
+                            <i class="fa-solid fa-pen btts"></i>
+                        </a>
+                        <a class="nav-link circle openDeleteSection" id="Info-teste" title="Deletar Seção" data-id="@sections.Id">
+                            <i class="fa-solid fa-trash btts "></i>
+                        </a>
+                    </div>
                 </th>
-            </tr>
-            <tr>
-                <td colspan="3" style="border: none;"></td> <!-- Linha vazia -->
             </tr>
             <tr>
             <th>Nome do Produto</th>
@@ -131,9 +149,26 @@ form input{
                         <td>@produto.Valor</td>
                     </tr>
             }
+
+            <tr>
+                <td colspan="3" style="border: 1px dashed #dddddd;">
+                    <a class="nav-link circle openCreateSection" id="Info-teste" title="Criar novo produtos" data-id="@sections.Id" data-SectionNome="@sections.Nome">
+                        <i class="fa-solid fa-plus btts"></i>
+                    </a>
+                </td>
+            </tr>
             <tr>
                 <td colspan="3" style="border: none;"></td> <!-- Linha vazia -->
             </tr>
+            <tr>
+                <td colspan="3" style="border: none;"></td> <!-- Linha vazia -->
+            </tr>
+
+
         </tbody> 
+
+
+
+
     }
 </table>

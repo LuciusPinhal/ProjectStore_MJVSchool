@@ -31,8 +31,11 @@ namespace Store_Project.Controllers
         }
 
 
-        public IActionResult Produtos(int id)
+        public async Task<IActionResult> Produtos(int id)
         {
+            var client = _httpClientFactory.CreateClient("Store");
+            lojas = await client.GetFromJsonAsync<List<Loja>>("/Loja/Get");
+
             var lojaEncontrada = lojas.FirstOrDefault(l => l.Id == id);
             if (lojaEncontrada == null)
             {
@@ -86,7 +89,7 @@ namespace Store_Project.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateProdutos(int LojaId, string? section, string selectedSection, string nomeProduto, string nomeDescricao, string valorInput)
+        public async Task<IActionResult> CreateProdutos(int LojaId, string? section, string selectedSection, string nomeProduto, string nomeDescricao, string valorInput, string? lojaRedirecionamento)
         {
 
             try
@@ -129,6 +132,11 @@ namespace Store_Project.Controllers
                     HttpResponseMessage response = await client.PostAsJsonAsync("/Section/Post", CreateLojaMin);
                     string mensagem = await response.Content.ReadAsStringAsync();
 
+                    if (lojaRedirecionamento != "")
+                    {
+                        return RedirectToAction("Produtos", new { id = LojaId });
+                    }
+
                     mensagem = mensagem.Trim('"');
 
                     if (response.IsSuccessStatusCode)
@@ -149,6 +157,7 @@ namespace Store_Project.Controllers
                     TempData["Erro"] = "Campo 'VALOR' tem que ser um numero";
 
                 }
+           
 
                 return RedirectToAction("Index");
 
@@ -243,7 +252,126 @@ namespace Store_Project.Controllers
         }
 
 
+        public async Task<IActionResult> SectionCreateProdutos(int LojaId, int SectionId, string nomeProduto, string nomeDescricao, double valorInput)
+        {
+            try
+            {
+                Loja Newloja = new Loja()
+                {
+                    Id = LojaId,
+                    Nome = " ",
+                    Cidade= " ",
+                    Sections = new List<Section>()
+                    {
+                        new Section()
+                        {
+                            Id = SectionId,
+                            Nome= " ",
+                            Produtos = new List<Produto>()
+                            {
+                                new Produto()
+                                {
+                                    Nome = nomeProduto,
+                                    Descricao = nomeDescricao,
+                                    Valor = valorInput,
+                                    Section_id = SectionId,
+                                }
+                            }
 
+                        }
+                    }
+                    
+                };
+               
+                var client = _httpClientFactory.CreateClient("Store");
+
+                HttpResponseMessage response = await client.PostAsJsonAsync("/Produto/Post", Newloja);
+                string mensagem = await response.Content.ReadAsStringAsync();
+            } 
+            catch(Exception ex)
+            { 
+                Console.WriteLine(ex.ToString()); 
+            }
+            return RedirectToAction("Produtos", new { id = LojaId });
+        }
+
+        public async Task<IActionResult> EditeSection(int LojaId, int SectionId, string nome)
+        {
+            try
+            {
+                Loja Newloja = new Loja()
+                {
+                    Id = LojaId,
+                    Nome = " ",
+                    Cidade = " ",
+                    Sections = new List<Section>()
+                    {
+                        new Section()
+                        {
+                            Id = SectionId,
+                            Nome= nome,
+                            Produtos = new List<Produto>()
+                            {
+                                 new Produto()
+                                {
+                                    Nome = " ",
+                                    Descricao = " " ,
+                                    Valor = 0,
+                                    Section_id = 0,
+                                }
+                            }
+                           
+                        }
+                    }
+
+                };
+
+                var client = _httpClientFactory.CreateClient("Store");
+
+                HttpResponseMessage response = await client.PutAsJsonAsync("/Section/Put", Newloja);
+                string mensagem = await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            return RedirectToAction("Produtos", new { id = LojaId });
+        }
+
+        public async Task<IActionResult> DeleteSection(int LojaId, int DeleteId)
+        {
+
+            try
+            {
+                var client = _httpClientFactory.CreateClient("Store");
+                HttpResponseMessage response = await client.DeleteAsync($"/Section/Delete/{DeleteId}");
+
+                string mensagem = await response.Content.ReadAsStringAsync();
+
+                mensagem = mensagem.Trim('"');
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    TempData["Sucesso"] = mensagem;
+                }
+                else
+                {
+                    TempData["Erro"] = mensagem;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro não esperado: {ex.Message}");
+                TempData["Erro"] = "Ocorreu um erro inesperado. Por favor, tente novamente.";
+            }
+
+            return RedirectToAction("Produtos", new { id = LojaId });
+        }
+     
         public IActionResult DownloadProdutos(int id)
             {
                 var loja = lojas.FirstOrDefault(l => l.Id == id);
