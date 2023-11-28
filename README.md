@@ -28,7 +28,9 @@ As part of my final project for the #School .NET hashtag, I developed a store co
 ## 
 
 - Back-end (API): I implemented an API using ASP.NET Core Web API. This layer is responsible for efficiently managing data and providing essential services to the front-end.
+  
 - Front-end (MVC): I developed a web application using ASP.NET Core MVC, providing a friendly and interactive interface for users. This layer interacts efficiently with the API, ensuring a smooth experience.
+  
 -  Database: I chose PostgreSQL to store my data, and for efficient communication between the API and the database, I relied on the NpgSql NuGet package.
 
 &nbsp;
@@ -39,8 +41,11 @@ I adopted some design patterns to strengthen the code structure, including:
 ## 
 
 -  Method Abstraction: I used method abstraction to simplify and modularize the code, promoting easier maintenance and scalability.
+
 -   Separation of Concerns: I adopted a clear separation of concerns approach between the different layers of the application, improving readability and facilitating future expansions.
+
 -   Clean Code: I followed the principles of "Clean Code" to ensure that the code was understandable, elegant, and easy to maintain.
+  
 -   SOLID: I implemented SOLID principles, with a special emphasis on the Single Responsibility, Interface Segregation, and Dependency Inversion principles.
 
 
