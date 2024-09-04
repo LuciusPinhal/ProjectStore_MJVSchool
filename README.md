@@ -3,6 +3,12 @@
 
 # MJV_School
 
+
+
+https://github.com/user-attachments/assets/6c9d9163-32cf-485b-820a-44ec8e624188
+
+
+
 This repository contains all the projects we developed during the MJV .NET School.
 
 
